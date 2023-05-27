@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/accent"
+    android:padding="25dp">
+
+    <TextView
+        android:id="@+id/sign_up_tv"
+        style="@style/authScreenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/sex_tv"
+        style="@style/authScreenTextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/sex"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_tv" />
+
+    <RadioGroup
+        android:id="@+id/sex_rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sex_tv">
+
+        <RadioButton
+            android:id="@+id/male_button"
+            style="@style/radioButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableStart="@drawable/radio_btn_bg_selector"
+            android:drawablePadding="5dp"
+            android:minHeight="32dp"
+            android:text="@string/male" />
+
+        <RadioButton
+            android:id="@+id/female_button"
+            style="@style/radioButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableStart="@drawable/radio_btn_bg_selector"
+            android:drawablePadding="5dp"
+            android:minHeight="32dp"
+            android:text="@string/female" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/work_type_tv"
+        style="@style/authScreenTextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="@string/work_type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sex_rg" />
+
+    <RadioGroup
+        android:id="@+id/work_rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/work_type_tv">
+
+        <RadioButton
+            android:id="@+id/active_button"
+            style="@style/radioButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableStart="@drawable/radio_btn_bg_selector"
+            android:drawablePadding="5dp"
+            android:minHeight="32dp"
+            android:text="@string/active" />
+
+        <RadioButton
+            android:id="@+id/sedentary_button"
+            style="@style/radioButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:drawableStart="@drawable/radio_btn_bg_selector"
+            android:drawablePadding="5dp"
+            android:minHeight="32dp"
+            android:text="@string/sedentary" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/trainings_amount_tv"
+        style="@style/authScreenTextBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:text="@string/amount_of_trainings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/work_rg" />
+
+    <Button
+        android:id="@+id/third_sign_up_continue"
+        style="@style/authScreenButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:text="@string/continue_btn_text"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/tv"
+        style="@style/authScreenText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3/4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/trainings_amount_tv">
+
+        <SeekBar
+            android:id="@+id/trainingsSeekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/signUpSeekbar"
+            android:max="8"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:progress="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/minTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/authScreenText"
+            android:layout_marginStart="5dp"
+            android:text="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/trainingsSeekBar" />
+
+        <TextView
+            android:id="@+id/maxTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/authScreenText"
+            android:layout_marginEnd="3dp"
+            android:text="7+"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/trainingsSeekBar" />
+
+        <TextView
+            android:id="@+id/progressTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/authScreenText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/trainingsSeekBar" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

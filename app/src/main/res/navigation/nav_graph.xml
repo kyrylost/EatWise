@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstLaunchFragment">
+
+    <fragment
+        android:id="@+id/firstLaunchFragment"
+        android:name="kyrylost.apps.eatwise.fragments.FirstLaunchFragment"
+        android:label="FirstLaunchFragment" >
+        <action
+            android:id="@+id/action_firstLaunchFragment_to_signUpFirstFragment"
+            app:destination="@id/signUpFirstFragment" />
+        <action
+            android:id="@+id/action_firstLaunchFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFirstFragment"
+        android:name="kyrylost.apps.eatwise.fragments.SignUpFirstFragment"
+        android:label="SignUpFirstFragment" >
+        <action
+            android:id="@+id/action_signUpFirstFragment_to_signUpSecondFragment"
+            app:destination="@id/signUpSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="kyrylost.apps.eatwise.fragments.SignInFragment"
+        android:label="SignInFragment" />
+    <fragment
+        android:id="@+id/signUpSecondFragment"
+        android:name="kyrylost.apps.eatwise.fragments.SignUpSecondFragment"
+        android:label="SignUpSecondFragment" >
+        <action
+            android:id="@+id/action_signUpSecondFragment_to_signUpThirdFragment"
+            app:destination="@id/signUpThirdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpThirdFragment"
+        android:name="kyrylost.apps.eatwise.fragments.SignUpThirdFragment"
+        android:label="SignUpThirdFragment" >
+        <action
+            android:id="@+id/action_signUpThirdFragment_to_signUpFourthFragment"
+            app:destination="@id/signUpFourthFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFourthFragment"
+        android:name="kyrylost.apps.eatwise.fragments.SignUpFourthFragment"
+        android:label="SignUpFourthFragment" >
+        <action
+            android:id="@+id/action_signUpFourthFragment_to_consumedFragment"
+            app:destination="@id/consumedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/consumedFragment"
+        android:name="kyrylost.apps.eatwise.fragments.ConsumedFragment"
+        android:label="ConsumedFragment" >
+        <action
+            android:id="@+id/action_consumedFragment_to_personalPageFragment"
+            app:destination="@id/personalPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodListFragment"
+        android:name="kyrylost.apps.eatwise.fragments.FoodListFragment"
+        android:label="FoodListFragment" >
+        <action
+            android:id="@+id/action_foodListFragment_to_personalPageFragment"
+            app:destination="@id/personalPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/personalPageFragment"
+        android:name="kyrylost.apps.eatwise.fragments.PersonalPageFragment"
+        android:label="PersonalPageFragment" />
+</navigation>

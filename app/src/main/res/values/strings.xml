@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">EatWise</string>
+    <string name="food_calculator">food calculator</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_in_underlined"><u>Sign in</u></string>
+    <string name="create_account">Create account</string>
+    <string name="sign_up">Sign up</string>
+    <string name="sign_up_underlined"><u>Sign up</u></string>
+    <string name="password_hint">●●●●●●●●</string>
+    <string name="example_gmail">example@gmail.com</string>
+    <string name="do_not_have_an_account">Don\'t have an account yet?</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="continue_btn_text">Continue</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="weight_example">00.0</string>
+    <string name="your_birth_date">Your birth date</string>
+    <string name="your_weight">Your weight</string>
+    <string name="sex">Sex</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="work_type">Do You have active or sedentary work</string>
+    <string name="active">Active</string>
+    <string name="sedentary">Sedentary</string>
+    <string name="amount_of_trainings">Amount of trainings per week</string>
+</resources>
