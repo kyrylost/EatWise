@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "800716587284",
+    "project_id": "eatwise-0",
+    "storage_bucket": "eatwise-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800716587284:android:ea7056f592d83395940201",
+        "android_client_info": {
+          "package_name": "kyrylost.apps.eatwise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800716587284-qos0qm8cbvvu90clobcfv1d9kfncu27h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtWV2yi6xZICL4QV1N9MLdkSr14u_b_b4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800716587284-qos0qm8cbvvu90clobcfv1d9kfncu27h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

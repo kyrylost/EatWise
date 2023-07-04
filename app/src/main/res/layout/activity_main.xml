@@ -14,4 +14,17 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:itemTextAppearanceActive="@style/bottomNavigationActiveTextStyle"
+        app:itemTextAppearanceInactive="@style/bottomNavigationTextStyle"
+        app:menu="@menu/navigation_items" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

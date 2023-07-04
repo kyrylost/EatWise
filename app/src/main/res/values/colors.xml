@@ -11,5 +11,6 @@
     <color name="light_blue">#BDEFFF</color>
     <color name="light_red">#FFBDBD</color>
     <color name="accent_dark">#5B3EDC</color>
+    <color name="light_gray">#FFD1D1D1</color>
 
 </resources>

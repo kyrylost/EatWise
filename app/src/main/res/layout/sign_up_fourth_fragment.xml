@@ -53,6 +53,7 @@
                 app:cardCornerRadius="15dp">
 
                 <LinearLayout
+                    android:id="@+id/weight_maintenance_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -88,6 +89,7 @@
                 app:cardCornerRadius="15dp">
 
                 <LinearLayout
+                    android:id="@+id/weight_gain_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -123,6 +125,7 @@
                 app:cardCornerRadius="15dp">
 
                 <LinearLayout
+                    android:id="@+id/weight_lose_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -134,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="Weight gain" />
+                        android:text="Weight lose" />
 
                     <TextView
                         android:id="@+id/weight_loss_desc_tv"
@@ -154,10 +157,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
+                android:layout_marginBottom="5dp"
                 android:backgroundTint="@color/accent_dark"
                 app:cardCornerRadius="15dp">
 
                 <LinearLayout
+                    android:id="@+id/cutting_diet_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -169,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="Weight gain" />
+                        android:text="Cutting diet" />
 
                     <TextView
                         android:id="@+id/cutting_diet_desc_tv"

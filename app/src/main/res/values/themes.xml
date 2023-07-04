@@ -10,8 +10,10 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/black</item>
         <!-- Customize your theme here. -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="authScreenTitle" parent="Widget.AppCompat.TextView">
@@ -40,8 +42,9 @@
 
     <style name="authScreenInputsHint" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">12sp</item>
-        <item name="android:textColorHint">@color/white</item>
-        <item name="android:fontFamily">@font/nunito_extralight</item>
+        <item name="android:textColorHint">@color/light_gray</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
     </style>
 
     <style name="authScreenButton" parent="ThemeOverlay.Material3.Button">
@@ -68,5 +71,66 @@
         <item name="android:progressTint">@color/white</item>
         <item name="android:thumbTint">@color/white</item>
     </style>
+
+
+    <style name="consumedScreenTitle" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_black</item>
+    </style>
+
+    <style name="consumedScreenTextBold" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_black</item>
+    </style>
+
+    <style name="consumedScreenTextRegular" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+    </style>
+
+    <style name="bottomNavigationTextStyle">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+    </style>
+
+    <style name="bottomNavigationActiveTextStyle">
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">@font/nunito_bold</item>
+    </style>
+
+
+    <style name="foodListItemTextBold" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_bold</item>
+    </style>
+
+    <style name="foodListItemTextLight" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_extralight</item>
+    </style>
+
+    <style name="foodListEditText" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_extralight</item>
+    </style>
+
+    <style name="foodListButton" parent="ThemeOverlay.Material3.Button">
+        <item name="backgroundTint">@color/black</item>
+        <item name="cornerRadius">15dp</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/nunito_bold</item>
+    </style>
+
 
 </resources>
