@@ -84,15 +84,15 @@
         app:layout_constraintBottom_toBottomOf="@+id/foodRecyclerView">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/refreshButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            app:srcCompat="@drawable/ic_refresh"
-            android:contentDescription="@string/reload" />
+            android:contentDescription="@string/refresh"
+            app:srcCompat="@drawable/ic_refresh" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/errorText"
             style="@style/foodListErrorText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

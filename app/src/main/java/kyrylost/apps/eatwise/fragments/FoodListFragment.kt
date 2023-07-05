@@ -65,7 +65,7 @@ class FoodListFragment : Fragment() {
                         binding.errorLayout.isVisible = stateRefresh is LoadState.Error ||
                                 stateAppend is LoadState.Error
 
-                        binding.imageButton.setOnClickListener {
+                        binding.refreshButton.setOnClickListener {
                             binding.errorLayout.isVisible = false
                             collectUiState(query)
                         }
