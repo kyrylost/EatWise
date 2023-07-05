@@ -1,13 +1,19 @@
 package kyrylost.apps.eatwise.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.adapters.FoodAdapter
@@ -47,6 +53,26 @@ class FoodListFragment : Fragment() {
     private fun collectUiState(query: String) {
         viewLifecycleOwner.lifecycleScope.launch {
             foodViewModel.searchFood(query).collectLatest { food ->
+                launch(Dispatchers.Main) {
+                    adapter?.loadStateFlow?.collectLatest { loadStates ->
+
+                        val stateRefresh = loadStates.refresh
+                        val stateAppend = loadStates.append
+
+                        binding.progressBar.isVisible = stateRefresh is LoadState.Loading ||
+                                stateAppend is LoadState.Loading
+
+                        binding.errorLayout.isVisible = stateRefresh is LoadState.Error ||
+                                stateAppend is LoadState.Error
+
+                        binding.imageButton.setOnClickListener {
+                            binding.errorLayout.isVisible = false
+                            collectUiState(query)
+                        }
+
+                    }
+                }
+
                 adapter?.submitData(food)
             }
         }

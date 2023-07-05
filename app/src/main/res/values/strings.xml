@@ -55,4 +55,6 @@
     <string name="search_for_et">Search…</string>
     <string name="search">Search</string>
     <string name="food_list">Food list</string>
+    <string name="reload">Reload</string>
+    <string name="error_msg">Something went wrong! Check Your \ninternet connection and try again.</string>
 </resources>

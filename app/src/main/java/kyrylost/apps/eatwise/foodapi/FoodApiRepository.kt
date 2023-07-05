@@ -7,13 +7,10 @@ import javax.inject.Inject
 class FoodApiRepository @Inject constructor(private val foodApiService: FoodApiService) {
 
     fun searchFoods(query: String, apiKey: String) = Pager(
-        config = PagingConfig(pageSize = 20),
+        config = PagingConfig(pageSize = 8),
         pagingSourceFactory = {
             FoodPagingSource(foodApiService, apiKey, query)
         }
     ).flow
 
-//    suspend fun searchFoods(query: String, apiKey: String, pageNumber: Int, pageSize: Int):
-//            Response<FoodSearchResponse> =
-//        FoodApiInstance.apiService.searchFoods(query, apiKey, pageNumber, pageSize)
 }
