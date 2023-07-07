@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/consumedFragment"
         android:title="@string/consumption"
+        android:menuCategory="secondary"
         android:icon="@drawable/consumption" />
     <item android:id="@+id/foodListFragment"
         android:title="@string/food"
+        android:menuCategory="secondary"
         android:icon="@drawable/food" />
     <item android:id="@+id/personalPageFragment"
         android:title="@string/user_page"
+        android:menuCategory="secondary"
         android:icon="@drawable/user" />
 </menu>

@@ -71,7 +71,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
             val userTrainings = user.trainings
             val userDiet = user.diet
 
-            activityCoefficient = if(userWork == 1) { // Active
+            activityCoefficient = if(userWork == 0) { // Active
                 when(userTrainings) {
                     0 -> 1.5
                     in 1 .. 2 -> 1.7
@@ -114,62 +114,36 @@ class ConsumedNutrientsViewModel @Inject constructor(
             when(userDiet) {
                 // Maintenance
                 0 -> {
-                    proteinsCoefficient = 1.0
-                    fatsCoefficient = 1.0
-                    carbsCoefficient = 5.0
+                    proteinsCoefficient = 0.2
+                    fatsCoefficient = 0.2
+                    carbsCoefficient = 0.6
                 }
                 // Gain
                 1 -> {
-                    if (userSex == 0) {
-                        proteinsCoefficient = 2.0
-                        fatsCoefficient = 1.0
-                        carbsCoefficient = 6.5
-                    }
-                    else {
-                        proteinsCoefficient = 1.5
-                        fatsCoefficient = 1.0
-                        carbsCoefficient = 6.5
-                    }
+                    recommendedCalories.set(recommendedCalories.get() * 1.1)
+                    proteinsCoefficient = 0.28
+                    fatsCoefficient = 0.2
+                    carbsCoefficient = 0.52
                 }
                 // Lose
                 2 -> {
-                    if (userSex == 0) {
-                        proteinsCoefficient = 2.0
-                        fatsCoefficient = 0.8
-                        carbsCoefficient = 4.0
-                    }
-                    else {
-                        proteinsCoefficient = 1.5
-                        fatsCoefficient = 0.8
-                        carbsCoefficient = 4.0
-                    }
+                    recommendedCalories.set(recommendedCalories.get() * 0.8)
+                    proteinsCoefficient = 0.31
+                    fatsCoefficient = 0.29
+                    carbsCoefficient = 0.41
                 }
                 // Cutting
                 3 -> {
-                    proteinsCoefficient = 2.5
-                    fatsCoefficient = 0.6
-                    carbsCoefficient = 2.0
+                    recommendedCalories.set(recommendedCalories.get() * 0.85)
+                    proteinsCoefficient = 0.5
+                    fatsCoefficient = 0.2
+                    carbsCoefficient = 0.3
                 }
             }
-            if (userAge > 40 && (userDiet != 2 && userDiet != 3)) {
-                proteinsCoefficient += 0.1
-                fatsCoefficient += 0.1
-                carbsCoefficient -= 1.0
-            }
-            if (userWork == 0 && (userDiet != 2 && userDiet != 3)) {
-                proteinsCoefficient += 0.1
-                fatsCoefficient += 0.05
-                carbsCoefficient += 0.5
-            }
-            if (userTrainings >= 4 && (userDiet != 2 && userDiet != 3)) {
-                proteinsCoefficient += 0.2
-                fatsCoefficient += 0.1
-                carbsCoefficient += 0.5
-            }
 
-            recommendedProteins.set(userWeight * proteinsCoefficient)
-            recommendedCarbs.set(userWeight * carbsCoefficient)
-            recommendedFats.set(userWeight * fatsCoefficient)
+            recommendedProteins.set((recommendedCalories.get() * proteinsCoefficient) / 4)
+            recommendedCarbs.set((recommendedCalories.get() * carbsCoefficient) / 4)
+            recommendedFats.set((recommendedCalories.get() * fatsCoefficient) / 9)
 
             Log.d("calc", "$recommendedCalories $recommendedWater $recommendedProteins")
         }

@@ -29,7 +29,9 @@
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_consumedFragment"
-            app:destination="@id/consumedFragment" />
+            app:destination="@id/consumedFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/signUpSecondFragment"
@@ -53,7 +55,9 @@
         android:label="SignUpFourthFragment" >
         <action
             android:id="@+id/action_signUpFourthFragment_to_consumedFragment"
-            app:destination="@id/consumedFragment" />
+            app:destination="@id/consumedFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/consumedFragment"
