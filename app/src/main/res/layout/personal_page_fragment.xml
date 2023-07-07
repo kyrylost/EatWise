@@ -1,6 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+        <variable
+            name="userViewModel"
+            type="kyrylost.apps.eatwise.viewmodel.UserViewModel" />
+    </data>
+
+    <ScrollView android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/foodListTitle"
+                style="@style/consumedScreenTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/personal_page" />
+
+            <TextView
+                android:id="@+id/weight_tv"
+                style="@style/personalPageTitlesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/your_weight" />
+
+            <EditText
+                android:id="@+id/search_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/et_bg_personal_page"
+                android:hint="@string/weight_example"
+                android:text='@{String.format("%.1f", userViewModel.userWeight)}'
+                android:textCursorDrawable="@null"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:autofillHints="" />
+
+            <TextView
+                android:id="@+id/sex_tv"
+                style="@style/personalPageTitlesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/sex" />
+
+            <kyrylost.apps.eatwise.customviews.CustomRadioGroup
+                android:id="@+id/sex_rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                app:setCheckedItemAt="@{userViewModel.userSex}">
+
+                <RadioButton
+                    android:id="@+id/male_button"
+                    style="@style/radioButtonPersonalPageStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableStart="@drawable/radio_btn_bg_selector_dark"
+                    android:drawablePadding="5dp"
+                    android:minHeight="32dp"
+                    android:text="@string/male" />
+
+                <RadioButton
+                    android:id="@+id/female_button"
+                    style="@style/radioButtonPersonalPageStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableStart="@drawable/radio_btn_bg_selector_dark"
+                    android:drawablePadding="5dp"
+                    android:minHeight="32dp"
+                    android:text="@string/female" />
+            </kyrylost.apps.eatwise.customviews.CustomRadioGroup>
+
+            <TextView
+                android:id="@+id/work_tv"
+                style="@style/personalPageTitlesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="45dp"
+                android:text="@string/work_type" />
+
+            <kyrylost.apps.eatwise.customviews.CustomRadioGroup
+                android:id="@+id/work_rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                app:setCheckedItemAt="@{userViewModel.userWork}">
+
+                <RadioButton
+                    android:id="@+id/active_rb"
+                    style="@style/radioButtonPersonalPageStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableStart="@drawable/radio_btn_bg_selector_dark"
+                    android:drawablePadding="5dp"
+                    android:minHeight="32dp"
+                    android:text="@string/active" />
+
+                <RadioButton
+                    android:id="@+id/sedentary_rb"
+                    style="@style/radioButtonPersonalPageStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableStart="@drawable/radio_btn_bg_selector_dark"
+                    android:drawablePadding="5dp"
+                    android:minHeight="32dp"
+                    android:text="@string/sedentary" />
+            </kyrylost.apps.eatwise.customviews.CustomRadioGroup>
+
+            <TextView
+                android:id="@+id/trainings_amount_tv"
+                style="@style/personalPageTitlesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="45dp"
+                android:text="@string/amount_of_trainings" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="25dp">
+
+                <SeekBar
+                    android:id="@+id/trainingsSeekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/personalPageSeekbar"
+                    android:max="8"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:progress="@{userViewModel.userTrainings}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/minTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/personalPageTitlesText"
+                    android:layout_marginStart="5dp"
+                    android:text="0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/trainingsSeekBar" />
+
+                <TextView
+                    android:id="@+id/maxTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/personalPageTitlesText"
+                    android:layout_marginEnd="3dp"
+                    android:text="7+"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/trainingsSeekBar" />
+
+                <TextView
+                    android:id="@+id/progressTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/personalPageTitlesText"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/trainingsSeekBar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/diet_tv"
+                style="@style/personalPageTitlesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="45dp"
+                android:text="@string/choose_your_diet_plan" />
+
+            <kyrylost.apps.eatwise.customviews.CustomRadioGroup
+                android:id="@+id/diet_rg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                app:setCheckedItemAt="@{userViewModel.userDiet}" >
+
+                <RadioButton
+                    android:id="@+id/weight_maintenance_rb"
+                    style="@style/radioButtonPersonalPageStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableStart="@drawable/radio_btn_bg_selector_dark"
+                    android:drawablePadding="5dp"
+                    android:minHeight="32dp"
+                    android:text="@string/weight_maintenance" />
+
+                <RadioButton
+                    android:id="@+id/weight_gain_rb"
+                    style="@style/radioButtonPersonalPageStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableStart="@drawable/radio_btn_bg_selector_dark"
+                    android:drawablePadding="5dp"
+                    android:minHeight="32dp"
+                    android:text="@string/weight_gain" />
+
+                <RadioButton
+                    android:id="@+id/weight_loss_rb"
+                    style="@style/radioButtonPersonalPageStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableStart="@drawable/radio_btn_bg_selector_dark"
+                    android:drawablePadding="5dp"
+                    android:minHeight="32dp"
+                    android:text="@string/weight_loss" />
+
+                <RadioButton
+                    android:id="@+id/cutting_diet_rb"
+                    style="@style/radioButtonPersonalPageStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:drawableStart="@drawable/radio_btn_bg_selector_dark"
+                    android:drawablePadding="5dp"
+                    android:minHeight="32dp"
+                    android:text="@string/cutting_diet" />
+
+            </kyrylost.apps.eatwise.customviews.CustomRadioGroup>
+
+            <Button
+                android:id="@+id/save_button"
+                style="@style/personalPageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="75dp"
+                android:text="@string/save" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

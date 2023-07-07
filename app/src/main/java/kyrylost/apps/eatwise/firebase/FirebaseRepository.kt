@@ -122,4 +122,45 @@ class FirebaseRepository @Inject constructor(): FirebaseDatabase() {
         }
     }
 
+
+    fun updateWeight(weight: Double, onFailure: () -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            currentUserDb.child("weight").setValue(weight).addOnFailureListener {
+                onFailure()
+            }
+        }
+    }
+
+    fun updateSex(sex: Int, onFailure: () -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            currentUserDb.child("sex").setValue(sex).addOnFailureListener {
+                onFailure()
+            }
+        }
+    }
+
+    fun updateWork(work: Int, onFailure: () -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            currentUserDb.child("work").setValue(work).addOnFailureListener {
+                onFailure()
+            }
+        }
+    }
+
+    fun updateTrainings(trainings: Int, onFailure: () -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            currentUserDb.child("trainings").setValue(trainings).addOnFailureListener {
+                onFailure()
+            }
+        }
+    }
+
+    fun updateDiet(diet: Int, onFailure: () -> Unit) {
+        CoroutineScope(Dispatchers.IO).launch {
+            currentUserDb.child("diet").setValue(diet).addOnFailureListener {
+                onFailure()
+            }
+        }
+    }
+
 }

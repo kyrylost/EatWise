@@ -57,4 +57,16 @@
     <string name="food_list">Food list</string>
     <string name="refresh">Refresh</string>
     <string name="error_msg">Something went wrong! Check Your \ninternet connection and try again.</string>
+    <string name="personal_page">Personal page</string>
+    <string name="weight_maintenance">Weight maintenance</string>
+    <string name="weight_maintenance_desc">Is a diet plan that is designed to help individuals maintain their current body weight.</string>
+    <string name="weight_gain">Weight gain</string>
+    <string name="weight_gain_desc">Is a diet plan designed to help individuals increase their body weight, specifically by building muscle mass.</string>
+    <string name="weight_loss">Weight loss</string>
+    <string name="weight_lose_desc">Is a diet plan designed to help individuals lose weight.</string>
+    <string name="cutting_diet">Cutting diet</string>
+    <string name="cutting_diet_desc">Is a diet plan that is designed to help individuals lose body fat while maintaining muscle mass.</string>
+    <string name="diets_title">In accordance to Your lifestyle we recommend You these diets:</string>
+    <string name="choose_your_diet_plan">Choose Your diet plan:</string>
+    <string name="save">Save</string>
 </resources>

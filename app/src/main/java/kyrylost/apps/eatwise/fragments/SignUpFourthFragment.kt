@@ -84,7 +84,7 @@ class SignUpFourthFragment : Fragment() {
             diet = "maintenance"
             binding.weightMaintenanceLayout.background = borderDrawable
             binding.weightGainLayout.background = null
-            binding.weightLoseLayout.background = null
+            binding.weightLossLayout.background = null
             binding.cuttingDietLayout.background = null
         }
 
@@ -92,15 +92,15 @@ class SignUpFourthFragment : Fragment() {
             diet = "gaining"
             binding.weightMaintenanceLayout.background = null
             binding.weightGainLayout.background = borderDrawable
-            binding.weightLoseLayout.background = null
+            binding.weightLossLayout.background = null
             binding.cuttingDietLayout.background = null
         }
 
-        binding.weightLoseLayout.setOnClickListener {
+        binding.weightLossLayout.setOnClickListener {
             diet = "losing"
             binding.weightMaintenanceLayout.background = null
             binding.weightGainLayout.background = null
-            binding.weightLoseLayout.background = borderDrawable
+            binding.weightLossLayout.background = borderDrawable
             binding.cuttingDietLayout.background = null
         }
 
@@ -108,7 +108,7 @@ class SignUpFourthFragment : Fragment() {
             diet = "cutting"
             binding.weightMaintenanceLayout.background = null
             binding.weightGainLayout.background = null
-            binding.weightLoseLayout.background = null
+            binding.weightLossLayout.background = null
             binding.cuttingDietLayout.background = borderDrawable
         }
 

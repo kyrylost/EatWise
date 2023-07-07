@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="In accordance to Your lifestyle we recommend You these diets:"
+        android:text="@string/diets_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_up_tv" />
 
@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="Weight maintenance" />
+                        android:text="@string/weight_maintenance" />
 
                     <TextView
                         android:id="@+id/weight_maintenance_desc_tv"
@@ -75,7 +75,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:text="Is a diet plan that is designed to help individuals maintain their current body weight." />
+                        android:text="@string/weight_maintenance_desc" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -101,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="Weight gain" />
+                        android:text="@string/weight_gain" />
 
                     <TextView
                         android:id="@+id/weight_gain_desc_tv"
@@ -111,7 +111,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:text="Is a diet plan designed to help individuals increase their body weight, specifically by building muscle mass." />
+                        android:text="@string/weight_gain_desc" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -125,7 +125,7 @@
                 app:cardCornerRadius="15dp">
 
                 <LinearLayout
-                    android:id="@+id/weight_lose_layout"
+                    android:id="@+id/weight_loss_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="Weight lose" />
+                        android:text="@string/weight_loss" />
 
                     <TextView
                         android:id="@+id/weight_loss_desc_tv"
@@ -147,7 +147,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:text="Is a diet plan designed to help individuals lose weight." />
+                        android:text="@string/weight_lose_desc" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -174,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
-                        android:text="Cutting diet" />
+                        android:text="@string/cutting_diet" />
 
                     <TextView
                         android:id="@+id/cutting_diet_desc_tv"
@@ -184,7 +184,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="15dp"
-                        android:text="Is a diet plan that is designed to help individuals lose body fat while maintaining muscle mass." />
+                        android:text="@string/cutting_diet_desc" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -1,6 +1,7 @@
 package kyrylost.apps.eatwise.viewmodel
 
-import android.util.Log
+import androidx.databinding.ObservableDouble
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,6 +10,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kyrylost.apps.eatwise.SingleLiveEvent
 import kyrylost.apps.eatwise.firebase.FirebaseRepository
 import kyrylost.apps.eatwise.model.User
 import kyrylost.apps.eatwise.room.UserRepository
@@ -23,28 +25,32 @@ class UserViewModel @Inject constructor(
 
     private var firebaseUserRepositoryIsAccessible = false
 
-    val userAuthAndCreatingSuccessMutableLiveData = MutableLiveData<Boolean>()
-    val userAuthAndCreatingFailureMutableLiveData = MutableLiveData<Boolean>()
+    val userAuthAndCreatingSuccessMutableLiveData = SingleLiveEvent<Boolean>()
+    val userAuthAndCreatingFailureMutableLiveData = SingleLiveEvent<Boolean>()
 
-    val emailAndPasswordSuccessfullySetted = MutableLiveData<Boolean>()
-    val emailAndPasswordSetError = MutableLiveData<String>()
+    val emailAndPasswordSuccessfullySetted = SingleLiveEvent<Boolean>()
+    val emailAndPasswordSetError = SingleLiveEvent<String>()
 
-    val secondScreenFieldsSuccessfullySetted = MutableLiveData<Boolean>()
-    val secondScreenFieldsSetError = MutableLiveData<String>()
+    val secondScreenFieldsSuccessfullySetted = SingleLiveEvent<Boolean>()
+    val secondScreenFieldsSetError = SingleLiveEvent<String>()
 
-    val thirdScreenFieldsSuccessfullySetted = MutableLiveData<Boolean>()
-    val thirdScreenFieldsSetError = MutableLiveData<String>()
+    val thirdScreenFieldsSuccessfullySetted = SingleLiveEvent<Boolean>()
+    val thirdScreenFieldsSetError = SingleLiveEvent<String>()
 
-    val fourthScreenFieldsSetError = MutableLiveData<String>()
+    val fourthScreenFieldsSetError = SingleLiveEvent<String>()
+
+    val fieldUpdateFailure = SingleLiveEvent<String>()
+
 
     private var userEmail = ""
     private var userPassword = ""
     private var userBirthday = ""
-    private var userWeight = 0.0
-    private var userSex = 0
-    private var userWork = 0
-    private var userTrainings = 0
-    private var userDiet = 0
+    var userWeight = ObservableDouble()
+    var userSex = ObservableInt()
+    var userWork = ObservableInt()
+    var userTrainings = ObservableInt()
+    var userDiet = ObservableInt()
+
 
     fun getEmail(): String {
         return userEmail
@@ -86,7 +92,7 @@ class UserViewModel @Inject constructor(
         }
 
         userBirthday = birthday
-        userWeight = weight.toDouble()
+        userWeight.set(weight.toDouble())
         secondScreenFieldsSuccessfullySetted.value = true
     }
 
@@ -99,8 +105,8 @@ class UserViewModel @Inject constructor(
                 return
             }
 
-            maleButtonId -> userSex = 0
-            femaleButtonId -> userSex = 1
+            maleButtonId -> userSex.set(0)
+            femaleButtonId -> userSex.set(1)
         }
 
         when (workId) {
@@ -109,11 +115,11 @@ class UserViewModel @Inject constructor(
                 return
             }
 
-            activeButtonId -> userWork = 0
-            sedentaryButtonId -> userWork = 1
+            activeButtonId -> userWork.set(0)
+            sedentaryButtonId -> userWork.set(1)
         }
 
-        userTrainings = trainings
+        userTrainings.set(trainings)
         thirdScreenFieldsSuccessfullySetted.value = true
     }
 
@@ -124,10 +130,10 @@ class UserViewModel @Inject constructor(
         }
 
         when (diet) {
-            "maintenance" -> userDiet = 0
-            "gaining" -> userDiet = 1
-            "losing" -> userDiet = 2
-            "cutting" -> userDiet = 3
+            "maintenance" -> userDiet.set(0)
+            "gaining" -> userDiet.set(1)
+            "losing" -> userDiet.set(2)
+            "cutting" -> userDiet.set(3)
         }
 
         registerUser()
@@ -136,22 +142,10 @@ class UserViewModel @Inject constructor(
 
     private fun buildUser() : User {
         return User(
-            1, userBirthday, userWeight,
-            userSex, userWork,
-            userTrainings, userDiet
+            1, userBirthday, userWeight.get(),
+            userSex.get(), userWork.get(),
+            userTrainings.get(), userDiet.get()
         )
-    }
-
-    // remove log
-    private fun buildFirebaseUser(userData: HashMap<*, *>) : User {
-        val user = User(
-            1, userData["birthDate"] as String,
-            userData["weight"].anyToDouble(), userData["sex"].anyToInt(),
-            userData["work"].anyToInt(), userData["trainings"].anyToInt(),
-            userData["diet"].anyToInt()
-        )
-        Log.d("FirebaseUserData", user.toString())
-        return user
     }
 
     private fun createUser(user: User = buildUser()) {
@@ -163,13 +157,14 @@ class UserViewModel @Inject constructor(
         }
     }
 
+
     private fun registerUser() {
         viewModelScope.launch {
             firebaseRepository.register(
                 userEmail, userPassword,
-                userBirthday, userWeight,
-                userSex, userWork,
-                userTrainings, userDiet,
+                userBirthday, userWeight.get(),
+                userSex.get(), userWork.get(),
+                userTrainings.get(), userDiet.get(),
                 onSuccess = {
                     createUser()
                     firebaseUserRepositoryIsAccessible = true
@@ -186,20 +181,20 @@ class UserViewModel @Inject constructor(
             }
             if (user != null) {
                 userBirthday = user.birthDate
-                userWeight = user.weight
-                userSex = user.sex
-                userWork = user.work
-                userTrainings = user.trainings
-                userDiet = user.diet
+                userWeight.set(user.weight)
+                userSex.set(user.sex)
+                userWork.set(user.work)
+                userTrainings.set(user.trainings)
+                userDiet.set(user.diet)
 
                 firebaseRepository.login(
                     userEmail, userPassword,
                     onSuccess = {
                         firebaseUserRepositoryIsAccessible = true
                         firebaseRepository.setAllFields(
-                            userBirthday, userWeight,
-                            userSex, userWork,
-                            userTrainings, userDiet
+                            userBirthday, userWeight.get(),
+                            userSex.get(), userWork.get(),
+                            userTrainings.get(), userDiet.get()
                         )
                     }
                 )
@@ -207,8 +202,15 @@ class UserViewModel @Inject constructor(
             else {
                 firebaseRepository.loginAndGetData(
                     userEmail, userPassword,
-                    onSuccess = {
-                        firebaseUserData -> createUser(buildFirebaseUser(firebaseUserData))
+                    onSuccess = { firebaseUserData ->
+                        userBirthday = firebaseUserData["birthDate"] as String
+                        userWeight.set(firebaseUserData["weight"].anyToDouble())
+                        userSex.set(firebaseUserData["sex"].anyToInt())
+                        userWork.set(firebaseUserData["work"].anyToInt())
+                        userTrainings.set(firebaseUserData["trainings"].anyToInt())
+                        userDiet.set(firebaseUserData["diet"].anyToInt())
+
+                        createUser(buildUser())
                         firebaseUserRepositoryIsAccessible = true
                     },
                     onFailure = { userAuthAndCreatingFailureMutableLiveData.postValue(true) }
@@ -218,7 +220,137 @@ class UserViewModel @Inject constructor(
 
     }
 
+
+    fun updateUserData(newWeightString: String, newSex: Int,
+                       newWork: Int, newTrainings: Int,
+                       newDiet: Int) {
+
+        viewModelScope.launch {
+
+            if (newWeightString == "") {
+                fieldUpdateFailure.postValue("Please, input Your weight!")
+                return@launch
+            }
+
+            val newWeight = newWeightString.replace(",", ".").toDouble()
+            val failMessage = "%s field can't be updated"
+
+            if(firebaseUserRepositoryIsAccessible) {
+                if (newWeight != userWeight.get()) {
+                    firebaseRepository.updateWeight(
+                        newWeight,
+                        onFailure = {
+                            userWeight.notifyChange()
+                            fieldUpdateFailure.postValue(String.format(failMessage, "Weight"))
+                        }
+                    )
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateWeight(newWeight)
+                        userWeight.set(newWeight)
+                    }
+                }
+
+                if (newSex != userSex.get()) {
+                    firebaseRepository.updateSex(
+                        newSex,
+                        onFailure = {
+                            userSex.notifyChange()
+                            fieldUpdateFailure.postValue(String.format(failMessage, "Sex"))
+                        }
+                    )
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateSex(newSex)
+                        userSex.set(newSex)
+                    }
+                }
+
+                if (newWork != userWork.get()) {
+                    firebaseRepository.updateWork(
+                        newWork,
+                        onFailure = {
+                            userWork.notifyChange()
+                            fieldUpdateFailure.postValue(String.format(failMessage, "Work"))
+                        }
+                    )
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateWork(newWork)
+                        userWork.set(newWork)
+                    }
+                }
+
+                if (newTrainings != userTrainings.get()) {
+                    firebaseRepository.updateTrainings(
+                        newTrainings,
+                        onFailure = {
+                            userTrainings.notifyChange()
+                            fieldUpdateFailure.postValue(String.format(failMessage, "Trainings"))
+                        }
+                    )
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateTrainings(newTrainings)
+                        userTrainings.set(newTrainings)
+                    }
+                }
+
+                if (newDiet != userDiet.get()) {
+                    firebaseRepository.updateDiet(
+                        newDiet,
+                        onFailure = {
+                            userDiet.notifyChange()
+                            fieldUpdateFailure.postValue(String.format(failMessage, "Diet"))
+                        }
+                    )
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateDiet(newDiet)
+                        userDiet.set(newDiet)
+                    }
+                }
+
+            } else {
+
+                fieldUpdateFailure.postValue("Data will be saved to cloud after launch with an Internet!")
+
+                if (newWeight != userWeight.get()) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateWeight(newWeight)
+                        userWeight.set(newWeight)
+                    }
+                }
+
+                if (newSex != userSex.get()) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateSex(newSex)
+                        userSex.set(newSex)
+                    }
+                }
+
+                if (newWork != userWork.get()) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateWork(newWork)
+                        userWork.set(newWork)
+                    }
+                }
+
+                if (newTrainings != userTrainings.get()) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateTrainings(newTrainings)
+                        userTrainings.set(newTrainings)
+                    }
+                }
+
+                if (newDiet != userDiet.get()) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        userRepository.updateDiet(newDiet)
+                        userDiet.set(newDiet)
+                    }
+                }
+            }
+
+        }
+
+    }
 }
+
 
 private fun Any?.anyToDouble(): Double {
     return when (this){

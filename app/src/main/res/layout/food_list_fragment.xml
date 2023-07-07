@@ -17,34 +17,34 @@
 
     <EditText
         android:id="@+id/searchET"
-        style="@style/foodListEditText"
+        style="@style/appInputsText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
+        android:autofillHints=""
         android:background="@drawable/edit_text_background"
         android:hint="@string/search_for_et"
-        android:padding="13dp"
-        android:textCursorDrawable="@null"
         android:inputType="text"
         android:maxLines="1"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toStartOf="@+id/searchBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/foodListTitle"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@id/foodListTitle" />
 
     <Button
         android:id="@+id/searchBtn"
         style="@style/foodListButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="@string/search"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/searchET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/foodListTitle" />
 

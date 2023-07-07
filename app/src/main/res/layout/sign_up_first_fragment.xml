@@ -27,7 +27,7 @@
 
     <EditText
         android:id="@+id/email_address_et"
-        style="@style/authScreenInputsHint"
+        style="@style/authScreenInputs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -35,10 +35,7 @@
         android:background="@drawable/et_auth_bg"
         android:hint="@string/example_gmail"
         android:inputType="textEmailAddress"
-        android:paddingStart="15dp"
-        android:paddingTop="15dp"
-        android:paddingEnd="15dp"
-        android:paddingBottom="16dp"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_tv" />
@@ -55,7 +52,7 @@
 
     <EditText
         android:id="@+id/password_et"
-        style="@style/authScreenInputsHint"
+        style="@style/authScreenInputs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -63,10 +60,7 @@
         android:background="@drawable/et_auth_bg"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
-        android:paddingStart="15dp"
-        android:paddingTop="15dp"
-        android:paddingEnd="15dp"
-        android:paddingBottom="16dp"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_tv" />
