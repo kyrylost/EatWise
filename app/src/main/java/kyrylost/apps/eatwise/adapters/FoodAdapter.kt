@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import kyrylost.apps.eatwise.databinding.FoodItemBinding
+import kyrylost.apps.eatwise.model.FoodListItemData
 import kyrylost.apps.eatwise.model.FoodSearchResponse.Food
 import kyrylost.apps.eatwise.viewholders.FoodViewHolder
 
 class FoodAdapter(private val context: Context) : PagingDataAdapter<Food, FoodViewHolder>(FoodDiffCallBack()) {
+
+    var onItemClick : ((FoodListItemData) -> Unit)? = null
 
     class FoodDiffCallBack : DiffUtil.ItemCallback<Food>() {
         override fun areItemsTheSame(oldItem: Food, newItem: Food): Boolean {
@@ -33,50 +36,26 @@ class FoodAdapter(private val context: Context) : PagingDataAdapter<Food, FoodVi
         val item = getItem(position)
         if (item != null) {
 
-            val calories = item.foodNutrients.find {
-                it.nutrientId == 1008
-            }?.value ?: 0.0
-
-            val proteins = item.foodNutrients.find {
-                it.nutrientId == 1003
-            }?.value ?: 0.0
-
-            val carbs = item.foodNutrients.find {
-                it.nutrientId == 1005
-            }?.value ?: 0.0
-
-            val fats = item.foodNutrients.find {
-                it.nutrientId == 1004
-            }?.value ?: 0.0
-
-            val water = item.foodNutrients.find {
-                it.nutrientId == 1051
-            }?.value ?: 0.0
-
-            val fiber = item.foodNutrients.find {
-                it.nutrientId == 1079
-            }?.value ?: 0.0
-
-            val sugar = item.foodNutrients.find {
-                it.nutrientId == 2000
-            }?.value ?: 0.0
-
-            val salt = item.foodNutrients.find {
-                it.nutrientId == 1093
-            }?.value ?: 0.0
+            val itemData = FoodListItemData(
+                description = item.description,
+                calories = item.foodNutrients.find { it.nutrientId == 1008 }?.value ?: 0.0,
+                proteins = item.foodNutrients.find { it.nutrientId == 1003 }?.value ?: 0.0,
+                carbs = item.foodNutrients.find { it.nutrientId == 1005 }?.value ?: 0.0,
+                fats = item.foodNutrients.find { it.nutrientId == 1004 }?.value ?: 0.0,
+                water = item.foodNutrients.find { it.nutrientId == 1051 }?.value ?: 0.0,
+                fiber = item.foodNutrients.find { it.nutrientId == 1079 }?.value ?: 0.0,
+                sugar = item.foodNutrients.find { it.nutrientId == 2000 }?.value ?: 0.0,
+                salt = item.foodNutrients.find { it.nutrientId == 1093 }?.value ?: 0.0
+            )
 
             holder.bind(
-                item.description,
-                calories,
-                proteins,
-                carbs,
-                fats,
-                water,
-                fiber,
-                sugar,
-                salt,
+                itemData,
                 context
             )
+
+            holder.binding.root.setOnClickListener {
+                onItemClick?.invoke(itemData)
+            }
 
         }
     }

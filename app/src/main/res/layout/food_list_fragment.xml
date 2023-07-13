@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,6 +15,23 @@
         android:text="@string/food_list"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/menu_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodListTitle">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/searchET"
@@ -31,7 +49,7 @@
         android:textCursorDrawable="@null"
         app:layout_constraintEnd_toStartOf="@+id/searchBtn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/foodListTitle" />
+        app:layout_constraintTop_toBottomOf="@id/menu_layout" />
 
     <Button
         android:id="@+id/searchBtn"
@@ -46,7 +64,7 @@
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="@+id/searchET"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/foodListTitle" />
+        app:layout_constraintTop_toBottomOf="@id/menu_layout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/foodRecyclerView"

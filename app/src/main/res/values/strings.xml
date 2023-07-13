@@ -29,9 +29,9 @@
     <string name="water">Water</string>
     <string name="litres">%.1fL</string>
     <string name="from_litres">from %.1fL</string>
-    <string name="proteins">Proteins</string>
     <string name="grams">%.1fg</string>
     <string name="from_grams">from %.1fg</string>
+    <string name="proteins">Proteins</string>
     <string name="carbs">Carbs</string>
     <string name="fats">Fats</string>
     <string name="fiber">Fiber</string>
@@ -69,4 +69,59 @@
     <string name="diets_title">In accordance to Your lifestyle we recommend You these diets:</string>
     <string name="choose_your_diet_plan">Choose Your diet plan:</string>
     <string name="save">Save</string>
+    <string name="add">Add</string>
+
+    <string name="dialog_water_title_template">Today you consumed %.1fL of %s, this is %.1f%% from your daily norm</string>
+    <string name="dialog_title_template">Today you consumed %.1fg of %s, this is %.1f%% from your daily norm</string>
+    <string name="dialog_subtitle_template">Here you can manually add how many %s you have consumed</string>
+
+    <string name="dialog_water_note">Note: when we talk about water, we talk about
+        other liquids too. So, if you have drunk milk, or ate
+        a tomato, you may also add it to consumed water.
+        But it would be better if at least half of all consumed
+        liquids were water
+    </string>
+
+    <string name="dialog_protein_note">Note: when discussing protein,
+        it\'s important to prioritize a diverse range of protein sources
+        in your diet. Incorporating lean meats, fish, poultry, legumes, nuts,
+        and dairy products can help ensure an adequate protein intake.
+        By diversifying your protein sources, you can provide your body with a
+        wider array of essential amino acids and nutrients for optimal health.
+    </string>
+
+    <string name="dialog_carb_note">Note: carbohydrates are important for energy.
+        Include a variety of whole grains, fruits, vegetables, and legumes for
+        essential fiber and nutrients. Choose minimally processed carbs and avoid
+        excessive refined sugars and grains.
+    </string>
+
+    <string name="dialog_fat_note">Note: healthy fats are important for overall health.
+        Unsaturated fats, particularly monounsaturated and polyunsaturated fats,
+        are considered better choices for overall health. These can be found in
+        foods such as avocados, nuts, seeds, olive oil, fatty fish (like salmon and trout),
+        and plant-based oils like canola and sunflower oil. Avoid excessive intake of saturated
+        and trans fats found in processed foods.
+    </string>
+
+    <string name="dialog_fiber_note">Note: fiber is essential for a healthy diet.
+        Choose whole grains, fruits, vegetables, legumes, and nuts for fiber intake.
+        It aids digestion, promotes regularity, and helps control blood sugar levels.
+        Gradually increase fiber intake and stay hydrated for optimal results.
+    </string>
+
+    <string name="dialog_sugar_note">Note: sugar consumption should be moderated for
+        overall health. Limit intake of added sugars found in processed foods, sugary
+        beverages, and desserts. Instead, focus on natural sugars from fruits. Be mindful
+        of hidden sugars in packaged foods and opt for healthier alternatives.
+    </string>
+
+    <string name="dialog_salt_note">Note: limit salt intake by reducing added salt and
+        choosing fresh, whole foods. Processed foods are often high in sodium, so minimize
+        their consumption for better salt regulation and overall health.
+    </string>
+
+    <string name="g">(g)</string>
+    <string name="ml">(ml)</string>
+
 </resources>

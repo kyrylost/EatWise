@@ -1,11 +1,9 @@
 package kyrylost.apps.eatwise.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -13,11 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.adapters.FoodAdapter
 import kyrylost.apps.eatwise.databinding.FoodListFragmentBinding
+import kyrylost.apps.eatwise.fragments.dialogs.FoodDialogFragment
 import kyrylost.apps.eatwise.viewmodel.FoodViewModel
 
 class FoodListFragment : Fragment() {
@@ -48,6 +46,10 @@ class FoodListFragment : Fragment() {
         adapter = FoodAdapter(requireContext())
         binding.foodRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.foodRecyclerView.adapter = adapter
+        adapter?.onItemClick = {
+            val dialogFragment = FoodDialogFragment(it)
+            dialogFragment.show(childFragmentManager, "selected_food_dialog_fragment")
+        }
     }
 
     private fun collectUiState(query: String) {

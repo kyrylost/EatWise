@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.model.ConsumedNutrients
+import kyrylost.apps.eatwise.model.FoodListItemData
 import kyrylost.apps.eatwise.model.User
 import kyrylost.apps.eatwise.room.ConsumedNutrientsRepository
 import kyrylost.apps.eatwise.room.UserRepository
@@ -151,7 +152,9 @@ class ConsumedNutrientsViewModel @Inject constructor(
 
     fun getConsumedNutrients() {
         CoroutineScope(Dispatchers.IO).launch {
+
             var consumedNutrients = consumedNutrientsRepository.getConsumedNutrients()
+
             if (consumedNutrients == null) {
 
                 consumedNutrientsRepository.insertConsumedNutrients(ConsumedNutrients()).apply {
@@ -182,6 +185,102 @@ class ConsumedNutrientsViewModel @Inject constructor(
         }
     }
 
+    fun updateNutrientsByFoodAmountAndData(amount: Double?, foodListItemData: FoodListItemData) {
+        if (amount != null) {
 
+            val amountCoefficient = amount / 100
+            updateConsumedCalories(foodListItemData.calories * amountCoefficient)
+            updateConsumedWater(foodListItemData.water * amountCoefficient)
+            updateConsumedProteins(foodListItemData.proteins * amountCoefficient, false)
+            updateConsumedCarbs(foodListItemData.carbs * amountCoefficient, false)
+            updateConsumedFats(foodListItemData.fats * amountCoefficient, false)
+            updateConsumedFiber(foodListItemData.fiber * amountCoefficient, false)
+            updateConsumedSugar(foodListItemData.sugar * amountCoefficient, false)
+            updateConsumedSalt(foodListItemData.salt * amountCoefficient)
+
+        }
+    }
+
+    private fun updateConsumedCalories(consumed: Double?) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (consumed != null) {
+                consumedCalories.add(consumed)
+                consumedNutrientsRepository.updateConsumedCalories(consumedCalories.get())
+            }
+        }
+    }
+
+    fun updateConsumedWater(consumed: Double?) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (consumed != null) {
+                consumedWater.add(consumed)
+                consumedNutrientsRepository.updateConsumedWater(consumedWater.get())
+            }
+        }
+    }
+
+    fun updateConsumedProteins(consumed: Double?, updateCalories: Boolean = true) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (consumed != null) {
+                consumedProteins.add(consumed)
+                consumedNutrientsRepository.updateConsumedProteins(consumedProteins.get())
+                if (updateCalories) updateConsumedCalories(consumed * 4)
+            }
+        }
+
+    }
+
+    fun updateConsumedCarbs(consumed: Double?, updateCalories: Boolean = true) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (consumed != null) {
+                consumedCarbs.add(consumed)
+                consumedNutrientsRepository.updateConsumedCarbs(consumedCarbs.get())
+                if (updateCalories) updateConsumedCalories(consumed * 4)
+            }
+        }
+    }
+
+    fun updateConsumedFats(consumed: Double?, updateCalories: Boolean = true) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (consumed != null) {
+                consumedFats.add(consumed)
+                consumedNutrientsRepository.updateConsumedFats(consumedFats.get())
+                if (updateCalories) updateConsumedCalories(consumed * 9)
+            }
+        }
+    }
+
+    fun updateConsumedFiber(consumed: Double?, updateCalories: Boolean = true) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (consumed != null) {
+                consumedFiber.add(consumed)
+                consumedNutrientsRepository.updateConsumedFiber(consumedFiber.get())
+                if (updateCalories) updateConsumedCalories(consumed * 2)
+            }
+        }
+    }
+
+    fun updateConsumedSugar(consumed: Double?, updateCalories: Boolean = true) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (consumed != null) {
+                consumedSugar.add(consumed)
+                consumedNutrientsRepository.updateConsumedSugar(consumedSugar.get())
+                if (updateCalories) updateConsumedCalories(consumed * 3.86)
+            }
+        }
+    }
+
+    fun updateConsumedSalt(consumed: Double?) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (consumed != null) {
+                consumedSalt.add(consumed)
+                consumedNutrientsRepository.updateConsumedSalt(consumedSalt.get())
+            }
+        }
+    }
+
+    private fun ObservableDouble.add(value: Double?) {
+        if (value != null) set(get() + value)
+    }
 
 }

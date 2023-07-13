@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/popup_background">
+
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/consumedScreenTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        style="@style/consumedScreenTextBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="12.5dp"
+        android:layout_marginEnd="25dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/note"
+        style="@style/consumedScreenTextRegular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="12.5dp"
+        android:layout_marginEnd="25dp"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/nutrient_and_unit"
+        style="@style/consumedScreenTextBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="12.5dp">
+        <EditText
+            android:id="@+id/addET"
+            style="@style/appInputsText"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:autofillHints=""
+            android:inputType="numberDecimal"
+            android:background="@drawable/edit_text_background"
+            android:hint="0"
+            android:maxLines="1"
+            android:textCursorDrawable="@null"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/addBtn"
+            style="@style/dialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/add"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>
