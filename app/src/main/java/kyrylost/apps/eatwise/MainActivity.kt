@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.consumedFragment -> showBottomNav()
                 R.id.foodListFragment -> showBottomNav()
                 R.id.personalPageFragment -> showBottomNav()
+                R.id.favoriteFoodFragment -> showBottomNav()
+                R.id.ownFoodFragment -> showBottomNav()
                 else -> hideBottomNav()
             }
         }

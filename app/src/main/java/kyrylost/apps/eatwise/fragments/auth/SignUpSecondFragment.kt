@@ -1,4 +1,4 @@
-package kyrylost.apps.eatwise.fragments
+package kyrylost.apps.eatwise.fragments.auth
 
 import android.os.Bundle
 import android.text.Editable
@@ -30,7 +30,8 @@ class SignUpSecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         userViewModel.secondScreenFieldsSuccessfullySetted.observe(viewLifecycleOwner) {
-            val navController = SignUpSecondFragmentDirections.actionSignUpSecondFragmentToSignUpThirdFragment()
+            val navController =
+                SignUpSecondFragmentDirections.actionSignUpSecondFragmentToSignUpThirdFragment()
             findNavController().navigate(navController)
         }
 

@@ -1,4 +1,4 @@
-package kyrylost.apps.eatwise.fragments
+package kyrylost.apps.eatwise.fragments.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,7 +27,8 @@ class SignUpThirdFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         userViewModel.thirdScreenFieldsSuccessfullySetted.observe(viewLifecycleOwner) {
-            val navController = SignUpThirdFragmentDirections.actionSignUpThirdFragmentToSignUpFourthFragment()
+            val navController =
+                SignUpThirdFragmentDirections.actionSignUpThirdFragmentToSignUpFourthFragment()
             findNavController().navigate(navController)
         }
 

@@ -1,4 +1,4 @@
-package kyrylost.apps.eatwise.room
+package kyrylost.apps.eatwise.room.user
 
 import androidx.room.Dao
 import androidx.room.Insert

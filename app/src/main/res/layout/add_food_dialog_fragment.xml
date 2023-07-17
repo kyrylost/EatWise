@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/popup_background">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/consumedScreenTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:text="Add Your own food" />
+
+    <TextView
+        android:id="@+id/food_name"
+        style="@style/consumedScreenTextBold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:text="Food name" />
+
+    <EditText
+        android:id="@+id/food_name_et"
+        style="@style/appInputsText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="12.5dp"
+        android:layout_marginEnd="25dp"
+        android:autofillHints=""
+        android:background="@drawable/edit_text_background"
+        android:hint="Food name"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textCursorDrawable="@null" />
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/calories"
+                style="@style/consumedScreenTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/calories" />
+
+            <EditText
+                android:id="@+id/calories_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="12.5dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/water"
+                style="@style/consumedScreenTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/water" />
+
+            <EditText
+                android:id="@+id/water_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="12.5dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/protein"
+                style="@style/consumedScreenTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/proteins" />
+
+            <EditText
+                android:id="@+id/protein_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="12.5dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/fiber"
+                style="@style/consumedScreenTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/fiber" />
+
+            <EditText
+                android:id="@+id/fiber_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="12.5dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/carbs"
+                style="@style/consumedScreenTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/carbs" />
+
+            <EditText
+                android:id="@+id/carbs_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="12.5dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/sugar"
+                style="@style/consumedScreenTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/sugar" />
+
+            <EditText
+                android:id="@+id/sugar_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="12.5dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false">
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/fats"
+                style="@style/consumedScreenTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/fats" />
+
+            <EditText
+                android:id="@+id/fats_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="12.5dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <LinearLayout android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/salt"
+                style="@style/consumedScreenTextBold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:text="@string/salt" />
+
+            <EditText
+                android:id="@+id/salt_et"
+                style="@style/appInputsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="12.5dp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text_background"
+                android:hint="0"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/addBtn"
+        style="@style/dialogButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/add"
+        android:textAllCaps="false" />
+
+</LinearLayout>

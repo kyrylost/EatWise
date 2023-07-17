@@ -9,6 +9,14 @@ import dagger.hilt.components.SingletonComponent
 import kyrylost.apps.eatwise.foodapi.FoodApiInstance
 import kyrylost.apps.eatwise.foodapi.FoodApiRepository
 import kyrylost.apps.eatwise.room.*
+import kyrylost.apps.eatwise.room.consumednutrients.ConsumedNutrientsDao
+import kyrylost.apps.eatwise.room.consumednutrients.ConsumedNutrientsRepository
+import kyrylost.apps.eatwise.room.favoritefood.FavoriteFoodDao
+import kyrylost.apps.eatwise.room.favoritefood.FavoriteFoodRepository
+import kyrylost.apps.eatwise.room.ownrecipes.OwnFoodDao
+import kyrylost.apps.eatwise.room.ownrecipes.OwnFoodRepository
+import kyrylost.apps.eatwise.room.user.UserDao
+import kyrylost.apps.eatwise.room.user.UserRepository
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -44,6 +52,30 @@ class AppModule {
     @Provides
     fun provideUserRepository(userDao: UserDao) : UserRepository {
         return UserRepository(userDao)
+    }
+
+
+    // Providing dependencies for favorite food
+    @Provides
+    fun provideFavoriteFoodDao(appDatabase: AppDatabase) : FavoriteFoodDao {
+        return appDatabase.favoriteFoodDao()
+    }
+
+    @Provides
+    fun provideFavoriteFoodRepository(favoriteFoodDao: FavoriteFoodDao) : FavoriteFoodRepository {
+        return FavoriteFoodRepository(favoriteFoodDao)
+    }
+
+
+    // Providing dependencies for own recipes
+    @Provides
+    fun provideOwnFoodDao(appDatabase: AppDatabase) : OwnFoodDao {
+        return appDatabase.ownFoodDao()
+    }
+
+    @Provides
+    fun provideOwnFoodRepository(ownFoodDao: OwnFoodDao) : OwnFoodRepository {
+        return OwnFoodRepository(ownFoodDao)
     }
 
 

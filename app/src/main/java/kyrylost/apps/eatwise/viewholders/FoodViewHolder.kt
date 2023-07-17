@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import kyrylost.apps.eatwise.R
 import kyrylost.apps.eatwise.databinding.FoodItemBinding
-import kyrylost.apps.eatwise.model.FoodListItemData
+import kyrylost.apps.eatwise.model.FoodData
 
 class FoodViewHolder(
     val binding: FoodItemBinding
 ): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(itemData: FoodListItemData,
+    fun bind(itemData: FoodData,
              context: Context
     ) {
         binding.name.text = context.getString(R.string.food_list_desc, itemData.description)

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/foodListTitle"
+            style="@style/consumedScreenTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:text="@string/food_list" />
+
+        <LinearLayout
+            android:id="@+id/menu_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/search_tb"
+                style="@style/personalPageTitlesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search" />
+
+            <TextView
+                android:id="@+id/favorite_tb"
+                style="@style/personalPageTitlesText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:text="@string/favorite" />
+
+            <TextView
+                android:id="@+id/own_tb"
+                style="@style/radioButtonPersonalPageStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:text="@string/own_food" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ownFoodRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12.5dp"
+            android:layout_marginBottom="55dp"
+            android:clipToPadding="false"
+            android:paddingBottom="34dp"/>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_own_food_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/nunito_bold"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        android:text="+"
+        android:textSize="32sp" />
+
+
+</RelativeLayout>

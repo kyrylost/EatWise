@@ -8,10 +8,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.model.ConsumedNutrients
-import kyrylost.apps.eatwise.model.FoodListItemData
+import kyrylost.apps.eatwise.model.FoodData
 import kyrylost.apps.eatwise.model.User
-import kyrylost.apps.eatwise.room.ConsumedNutrientsRepository
-import kyrylost.apps.eatwise.room.UserRepository
+import kyrylost.apps.eatwise.room.consumednutrients.ConsumedNutrientsRepository
+import kyrylost.apps.eatwise.room.user.UserRepository
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
@@ -185,19 +185,17 @@ class ConsumedNutrientsViewModel @Inject constructor(
         }
     }
 
-    fun updateNutrientsByFoodAmountAndData(amount: Double?, foodListItemData: FoodListItemData) {
+    fun updateNutrientsByFoodAmountAndData(amount: Double?, foodData: FoodData) {
         if (amount != null) {
-
             val amountCoefficient = amount / 100
-            updateConsumedCalories(foodListItemData.calories * amountCoefficient)
-            updateConsumedWater(foodListItemData.water * amountCoefficient)
-            updateConsumedProteins(foodListItemData.proteins * amountCoefficient, false)
-            updateConsumedCarbs(foodListItemData.carbs * amountCoefficient, false)
-            updateConsumedFats(foodListItemData.fats * amountCoefficient, false)
-            updateConsumedFiber(foodListItemData.fiber * amountCoefficient, false)
-            updateConsumedSugar(foodListItemData.sugar * amountCoefficient, false)
-            updateConsumedSalt(foodListItemData.salt * amountCoefficient)
-
+            updateConsumedCalories(foodData.calories * amountCoefficient)
+            updateConsumedWater(foodData.water * amountCoefficient)
+            updateConsumedProteins(foodData.proteins * amountCoefficient, false)
+            updateConsumedCarbs(foodData.carbs * amountCoefficient, false)
+            updateConsumedFats(foodData.fats * amountCoefficient, false)
+            updateConsumedFiber(foodData.fiber * amountCoefficient, false)
+            updateConsumedSugar(foodData.sugar * amountCoefficient, false)
+            updateConsumedSalt((foodData.salt / 1000) * amountCoefficient)
         }
     }
 

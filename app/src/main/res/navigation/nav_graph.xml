@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFirstFragment"
-        android:name="kyrylost.apps.eatwise.fragments.SignUpFirstFragment"
+        android:name="kyrylost.apps.eatwise.fragments.auth.SignUpFirstFragment"
         android:label="SignUpFirstFragment" >
         <action
             android:id="@+id/action_signUpFirstFragment_to_signUpSecondFragment"
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="kyrylost.apps.eatwise.fragments.SignInFragment"
+        android:name="kyrylost.apps.eatwise.fragments.auth.SignInFragment"
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_consumedFragment"
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpSecondFragment"
-        android:name="kyrylost.apps.eatwise.fragments.SignUpSecondFragment"
+        android:name="kyrylost.apps.eatwise.fragments.auth.SignUpSecondFragment"
         android:label="SignUpSecondFragment" >
         <action
             android:id="@+id/action_signUpSecondFragment_to_signUpThirdFragment"
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpThirdFragment"
-        android:name="kyrylost.apps.eatwise.fragments.SignUpThirdFragment"
+        android:name="kyrylost.apps.eatwise.fragments.auth.SignUpThirdFragment"
         android:label="SignUpThirdFragment" >
         <action
             android:id="@+id/action_signUpThirdFragment_to_signUpFourthFragment"
@@ -51,7 +51,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFourthFragment"
-        android:name="kyrylost.apps.eatwise.fragments.SignUpFourthFragment"
+        android:name="kyrylost.apps.eatwise.fragments.auth.SignUpFourthFragment"
         android:label="SignUpFourthFragment" >
         <action
             android:id="@+id/action_signUpFourthFragment_to_consumedFragment"
@@ -80,6 +80,12 @@
         <action
             android:id="@+id/action_foodListFragment_to_consumedFragment"
             app:destination="@id/consumedFragment" />
+        <action
+            android:id="@+id/action_foodListFragment_to_ownFoodFragment"
+            app:destination="@id/ownFoodFragment" />
+        <action
+            android:id="@+id/action_foodListFragment_to_favoriteFoodFragment"
+            app:destination="@id/favoriteFoodFragment" />
     </fragment>
     <fragment
         android:id="@+id/personalPageFragment"
@@ -90,6 +96,28 @@
             app:destination="@id/consumedFragment" />
         <action
             android:id="@+id/action_personalPageFragment_to_foodListFragment"
+            app:destination="@id/foodListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFoodFragment"
+        android:name="kyrylost.apps.eatwise.fragments.FavoriteFoodFragment"
+        android:label="FavoriteFoodFragment" >
+        <action
+            android:id="@+id/action_favoriteFoodFragment_to_ownFoodFragment"
+            app:destination="@id/ownFoodFragment" />
+        <action
+            android:id="@+id/action_favoriteFoodFragment_to_foodListFragment"
+            app:destination="@id/foodListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ownFoodFragment"
+        android:name="kyrylost.apps.eatwise.fragments.OwnFoodFragment"
+        android:label="OwnFoodFragment" >
+        <action
+            android:id="@+id/action_ownFoodFragment_to_favoriteFoodFragment"
+            app:destination="@id/favoriteFoodFragment" />
+        <action
+            android:id="@+id/action_ownFoodFragment_to_foodListFragment"
             app:destination="@id/foodListFragment" />
     </fragment>
 </navigation>

@@ -10,7 +10,7 @@
     app:cardCornerRadius="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp">
@@ -102,7 +102,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
+
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/add_to_favorite"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_favorite" />
+
+        <ImageButton
+            android:id="@+id/delete_own_food"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@null"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_delete" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

@@ -1,4 +1,4 @@
-package kyrylost.apps.eatwise.fragments
+package kyrylost.apps.eatwise.fragments.auth
 
 import android.content.Context
 import android.os.Bundle

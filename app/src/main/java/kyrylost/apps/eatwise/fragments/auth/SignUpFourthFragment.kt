@@ -1,4 +1,4 @@
-package kyrylost.apps.eatwise.fragments
+package kyrylost.apps.eatwise.fragments.auth
 
 import android.content.Context
 import android.graphics.drawable.GradientDrawable
@@ -51,7 +51,8 @@ class SignUpFourthFragment : Fragment() {
         ) ?: return
 
         userViewModel.userAuthAndCreatingSuccessMutableLiveData.observe(viewLifecycleOwner) {
-            val navController = SignUpFourthFragmentDirections.actionSignUpFourthFragmentToConsumedFragment()
+            val navController =
+                SignUpFourthFragmentDirections.actionSignUpFourthFragmentToConsumedFragment()
 
             emailSharedPref.edit().putString("email", userViewModel.getEmail()).apply()
             passwordSharedPref.edit().putString("password", userViewModel.getPassword()).apply()

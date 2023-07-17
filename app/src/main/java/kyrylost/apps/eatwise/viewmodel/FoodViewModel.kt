@@ -12,7 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FoodViewModel @Inject constructor(
-    private val foodApiRepository: FoodApiRepository): ViewModel() {
+    private val foodApiRepository: FoodApiRepository
+): ViewModel() {
 
     val apiKey =  "fdRZzjj40XfaiBJhfE5y64iehfuJj6vh6A2eZYFI"
 

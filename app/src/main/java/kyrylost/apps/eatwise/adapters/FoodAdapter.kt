@@ -6,13 +6,15 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import kyrylost.apps.eatwise.databinding.FoodItemBinding
-import kyrylost.apps.eatwise.model.FoodListItemData
+import kyrylost.apps.eatwise.model.FoodData
 import kyrylost.apps.eatwise.model.FoodSearchResponse.Food
 import kyrylost.apps.eatwise.viewholders.FoodViewHolder
 
 class FoodAdapter(private val context: Context) : PagingDataAdapter<Food, FoodViewHolder>(FoodDiffCallBack()) {
 
-    var onItemClick : ((FoodListItemData) -> Unit)? = null
+    var onItemClick : ((FoodData) -> Unit)? = null
+    var onAddToFavoriteClick : ((FoodData) -> Unit)? = null
+
 
     class FoodDiffCallBack : DiffUtil.ItemCallback<Food>() {
         override fun areItemsTheSame(oldItem: Food, newItem: Food): Boolean {
@@ -36,7 +38,7 @@ class FoodAdapter(private val context: Context) : PagingDataAdapter<Food, FoodVi
         val item = getItem(position)
         if (item != null) {
 
-            val itemData = FoodListItemData(
+            val itemData = FoodData(
                 description = item.description,
                 calories = item.foodNutrients.find { it.nutrientId == 1008 }?.value ?: 0.0,
                 proteins = item.foodNutrients.find { it.nutrientId == 1003 }?.value ?: 0.0,
@@ -55,6 +57,10 @@ class FoodAdapter(private val context: Context) : PagingDataAdapter<Food, FoodVi
 
             holder.binding.root.setOnClickListener {
                 onItemClick?.invoke(itemData)
+            }
+
+            holder.binding.addToFavorite.setOnClickListener{
+                onAddToFavoriteClick?.invoke(itemData)
             }
 
         }

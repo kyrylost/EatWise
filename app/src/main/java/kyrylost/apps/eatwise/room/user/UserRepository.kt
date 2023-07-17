@@ -1,4 +1,4 @@
-package kyrylost.apps.eatwise.room
+package kyrylost.apps.eatwise.room.user
 
 import kyrylost.apps.eatwise.model.User
 import javax.inject.Inject

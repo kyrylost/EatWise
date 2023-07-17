@@ -147,7 +147,7 @@
         <item name="android:fontFamily">@font/nunito_bold</item>
     </style>
 
-    <style name="radioButtonPersonalPageStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
+    <style name="radioButtonPersonalPageStyle" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/nunito_regular</item>

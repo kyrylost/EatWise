@@ -2,7 +2,6 @@ package kyrylost.apps.eatwise.viewmodel
 
 import androidx.databinding.ObservableDouble
 import androidx.databinding.ObservableInt
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +12,7 @@ import kotlinx.coroutines.withContext
 import kyrylost.apps.eatwise.SingleLiveEvent
 import kyrylost.apps.eatwise.firebase.FirebaseRepository
 import kyrylost.apps.eatwise.model.User
-import kyrylost.apps.eatwise.room.UserRepository
+import kyrylost.apps.eatwise.room.user.UserRepository
 import java.time.LocalDate
 import javax.inject.Inject
 

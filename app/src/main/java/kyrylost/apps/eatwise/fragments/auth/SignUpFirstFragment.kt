@@ -1,4 +1,4 @@
-package kyrylost.apps.eatwise.fragments
+package kyrylost.apps.eatwise.fragments.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,7 +28,8 @@ class SignUpFirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         userViewModel.emailAndPasswordSuccessfullySetted.observe(viewLifecycleOwner) {
-            val navController = SignUpFirstFragmentDirections.actionSignUpFirstFragmentToSignUpSecondFragment()
+            val navController =
+                SignUpFirstFragmentDirections.actionSignUpFirstFragmentToSignUpSecondFragment()
             findNavController().navigate(navController)
         }
 

@@ -123,5 +123,7 @@
 
     <string name="g">(g)</string>
     <string name="ml">(ml)</string>
+    <string name="favorite">Favorite</string>
+    <string name="own_food">Own food</string>
 
 </resources>
