@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kyrylost.apps.eatwise.reseter.scheduleDatabaseResetAtSpecificTime
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
 
 
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        scheduleDatabaseResetAtSpecificTime(applicationContext)
 
         navBar = findViewById(R.id.navBar)
 

@@ -7,515 +7,510 @@
             type="kyrylost.apps.eatwise.viewmodel.ConsumedNutrientsViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/consumed_title"
+            style="@style/blackBlackSixteenText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginTop="25dp"
+            android:text="@string/consumed_today" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="25dp"
+                android:indeterminateDrawable="@drawable/calories_progress_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/consumed_tv"
-                style="@style/consumedScreenTitle"
+                android:id="@+id/calories_tv"
+                style="@style/blackBlackSixteenText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/consumed_today" />
+                android:text="@string/calories"
+                app:layout_constraintBottom_toTopOf="@+id/calories_percentage_tv"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/calories_percentage_tv"
+                style="@style/blackBlackSixteenText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2.5dp"
+                android:text="@{@string/percentage(consumedNutrientsViewModel.consumedCalories / consumedNutrientsViewModel.recommendedCalories * 100)}"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+            <TextView
+                android:id="@+id/calories_recommended_tv"
+                style="@style/boldBlackTwelveText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray"
+                android:text="@{@string/consumed_calories(consumedNutrientsViewModel.consumedCalories, consumedNutrientsViewModel.recommendedCalories)}"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/progressBar"
+                app:layout_constraintTop_toBottomOf="@+id/calories_percentage_tv"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarThumbVertical="@android:color/transparent"
+            android:clipToPadding="false"
+            android:paddingBottom="100dp">
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="6dp"
+                app:cardMaxElevation="6dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/calories_card"
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
+                    android:layout_margin="25dp"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/nutrients_tv"
+                        style="@style/blackBlackSixteenText"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:text="@string/nutrients" />
 
-                        <TextView
-                            android:id="@+id/calories_tv"
-                            style="@style/consumedScreenTextBold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="@string/calories" />
-
-                        <TextView
-                            android:id="@+id/calories_percentage_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedCalories / consumedNutrientsViewModel.recommendedCalories * 100)}" />
-
-                        <TextView
-                            android:id="@+id/calories_consumed_tv"
-                            style="@style/consumedScreenTextBold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text='@{String.format("%.2f", consumedNutrientsViewModel.consumedCalories)}' />
-
-                        <TextView
-                            android:id="@+id/calories_recommended_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:text="@{@string/from(consumedNutrientsViewModel.recommendedCalories)}" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/water_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="25dp">
+
+                        <ImageView
+                            android:id="@+id/water_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/image_view_round_bg"
+                            android:contentDescription="@string/water"
+                            android:padding="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_water"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/water_tv"
-                            style="@style/consumedScreenTextBold"
+                            style="@style/blackBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="@string/water" />
+                            android:layout_marginStart="25dp"
+                            android:text="@string/water"
+                            app:layout_constraintBottom_toTopOf="@+id/water_guideline"
+                            app:layout_constraintStart_toEndOf="@+id/water_image" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/water_guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.5" />
+
+                        <TextView
+                            android:id="@+id/consumed_water_tv"
+                            style="@style/boldBlackTwelveText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:text="@{@string/from_litres(consumedNutrientsViewModel.consumedWater, consumedNutrientsViewModel.recommendedWater)}"
+                            android:textColor="@color/gray"
+                            app:layout_constraintStart_toEndOf="@+id/water_image"
+                            app:layout_constraintTop_toBottomOf="@+id/water_guideline" />
 
                         <TextView
                             android:id="@+id/water_percentage_tv"
-                            style="@style/consumedScreenTextRegular"
+                            style="@style/regularBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedWater / consumedNutrientsViewModel.recommendedWater * 100)}" />
+                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedWater / consumedNutrientsViewModel.recommendedWater * 100)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/water_consumed_tv"
-                            style="@style/consumedScreenTextBold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="@{@string/litres(consumedNutrientsViewModel.consumedWater)}" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/water_recommended_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:text="@{@string/from_litres(consumedNutrientsViewModel.recommendedWater)}" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/proteins_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/proteins_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="25dp">
+
+                        <ImageView
+                            android:id="@+id/protein_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/image_view_round_bg"
+                            android:contentDescription="@string/water"
+                            android:padding="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_protein"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/proteins_tv"
-                            style="@style/consumedScreenTextBold"
+                            android:id="@+id/protein_tv"
+                            style="@style/blackBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="@string/proteins" />
+                            android:layout_marginStart="25dp"
+                            android:text="@string/proteins"
+                            app:layout_constraintBottom_toTopOf="@+id/protein_guideline"
+                            app:layout_constraintStart_toEndOf="@+id/protein_image" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/protein_guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.5" />
 
                         <TextView
-                            android:id="@+id/proteins_percentage_tv"
-                            style="@style/consumedScreenTextRegular"
+                            android:id="@+id/consumed_protein_tv"
+                            style="@style/boldBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedProteins / consumedNutrientsViewModel.recommendedProteins * 100)}" />
+                            android:layout_marginStart="25dp"
+                            android:text="@{@string/from_grams(consumedNutrientsViewModel.consumedProteins, consumedNutrientsViewModel.recommendedProteins)}"
+                            android:textColor="@color/gray"
+                            app:layout_constraintStart_toEndOf="@+id/protein_image"
+                            app:layout_constraintTop_toBottomOf="@+id/protein_guideline" />
 
                         <TextView
-                            android:id="@+id/proteins_consumed_tv"
-                            style="@style/consumedScreenTextBold"
+                            android:id="@+id/protein_percentage_tv"
+                            style="@style/regularBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="@{@string/grams(consumedNutrientsViewModel.consumedProteins)}" />
+                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedProteins / consumedNutrientsViewModel.recommendedProteins * 100)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/proteins_recommended_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:text="@{@string/from_grams(consumedNutrientsViewModel.recommendedProteins)}" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/carbs_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/carbs_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="25dp">
+
+                        <ImageView
+                            android:id="@+id/carb_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/image_view_round_bg"
+                            android:contentDescription="@string/water"
+                            android:padding="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_carbohydrate"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/carbs_tv"
-                            style="@style/consumedScreenTextBold"
+                            android:id="@+id/carb_tv"
+                            style="@style/blackBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="@string/carbs" />
+                            android:layout_marginStart="25dp"
+                            android:text="@string/carbs"
+                            app:layout_constraintBottom_toTopOf="@+id/carb_guideline"
+                            app:layout_constraintStart_toEndOf="@+id/carb_image" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/carb_guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.5" />
 
                         <TextView
-                            android:id="@+id/carbs_percentage_tv"
-                            style="@style/consumedScreenTextRegular"
+                            android:id="@+id/consumed_carb_tv"
+                            style="@style/boldBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedCarbs / consumedNutrientsViewModel.recommendedCarbs * 100)}" />
+                            android:layout_marginStart="25dp"
+                            android:text="@{@string/from_grams(consumedNutrientsViewModel.consumedCarbs, consumedNutrientsViewModel.recommendedCarbs)}"
+                            android:textColor="@color/gray"
+                            app:layout_constraintStart_toEndOf="@+id/carb_image"
+                            app:layout_constraintTop_toBottomOf="@+id/carb_guideline" />
 
                         <TextView
-                            android:id="@+id/carbs_consumed_tv"
-                            style="@style/consumedScreenTextBold"
+                            android:id="@+id/carb_percentage_tv"
+                            style="@style/regularBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="@{@string/grams(consumedNutrientsViewModel.consumedCarbs)}" />
+                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedCarbs / consumedNutrientsViewModel.recommendedCarbs * 100)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/carbs_recommended_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:text="@{@string/from_grams(consumedNutrientsViewModel.recommendedCarbs)}" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/fats_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fats_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="25dp">
+
+                        <ImageView
+                            android:id="@+id/fat_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/image_view_round_bg"
+                            android:contentDescription="@string/water"
+                            android:padding="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_fat"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/fats_tv"
-                            style="@style/consumedScreenTextBold"
+                            style="@style/blackBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="@string/fats" />
+                            android:layout_marginStart="25dp"
+                            android:text="@string/fats"
+                            app:layout_constraintBottom_toTopOf="@+id/fats_guideline"
+                            app:layout_constraintStart_toEndOf="@+id/fat_image" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/fats_guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.5" />
+
+                        <TextView
+                            android:id="@+id/consumed_fats_tv"
+                            style="@style/boldBlackTwelveText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:text="@{@string/from_grams(consumedNutrientsViewModel.consumedFats, consumedNutrientsViewModel.recommendedFats)}"
+                            android:textColor="@color/gray"
+                            app:layout_constraintStart_toEndOf="@+id/fat_image"
+                            app:layout_constraintTop_toBottomOf="@+id/fats_guideline" />
 
                         <TextView
                             android:id="@+id/fats_percentage_tv"
-                            style="@style/consumedScreenTextRegular"
+                            style="@style/regularBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedFats / consumedNutrientsViewModel.recommendedFats * 100)}" />
+                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedFats / consumedNutrientsViewModel.recommendedFats * 100)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/fats_consumed_tv"
-                            style="@style/consumedScreenTextBold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="@{@string/grams(consumedNutrientsViewModel.consumedFats)}" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/fats_recommended_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:text="@{@string/from_grams(consumedNutrientsViewModel.recommendedFats)}" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/fiber_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="7dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fiber_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="25dp">
+
+                        <ImageView
+                            android:id="@+id/fiber_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/image_view_round_bg"
+                            android:contentDescription="@string/water"
+                            android:padding="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_fiber"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/fiber_tv"
-                            style="@style/consumedScreenTextBold"
+                            style="@style/blackBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="@string/fiber" />
+                            android:layout_marginStart="25dp"
+                            android:text="@string/fiber"
+                            app:layout_constraintBottom_toTopOf="@+id/fiber_guideline"
+                            app:layout_constraintStart_toEndOf="@+id/fiber_image" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/fiber_guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.5" />
+
+                        <TextView
+                            android:id="@+id/consumed_fiber_tv"
+                            style="@style/boldBlackTwelveText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:text="@{@string/from_grams(consumedNutrientsViewModel.consumedFiber, consumedNutrientsViewModel.recommendedFiber)}"
+                            android:textColor="@color/gray"
+                            app:layout_constraintStart_toEndOf="@+id/fiber_image"
+                            app:layout_constraintTop_toBottomOf="@+id/fiber_guideline" />
 
                         <TextView
                             android:id="@+id/fiber_percentage_tv"
-                            style="@style/consumedScreenTextRegular"
+                            style="@style/regularBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedFiber / consumedNutrientsViewModel.recommendedFiber * 100)}" />
+                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedFiber / consumedNutrientsViewModel.recommendedFiber * 100)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/fiber_consumed_tv"
-                            style="@style/consumedScreenTextBold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="@{@string/grams(consumedNutrientsViewModel.consumedFiber)}" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/fiber_recommended_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:text="@{@string/from_grams(consumedNutrientsViewModel.recommendedFiber)}" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/sugar_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/sugar_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="25dp">
+
+                        <ImageView
+                            android:id="@+id/sugar_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/image_view_round_bg"
+                            android:contentDescription="@string/water"
+                            android:padding="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_sugar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/sugar_tv"
-                            style="@style/consumedScreenTextBold"
+                            style="@style/blackBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="@string/sugar" />
+                            android:layout_marginStart="25dp"
+                            android:text="@string/sugar"
+                            app:layout_constraintBottom_toTopOf="@+id/sugar_guideline"
+                            app:layout_constraintStart_toEndOf="@+id/sugar_image" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/sugar_guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.5" />
+
+                        <TextView
+                            android:id="@+id/consumed_sugar_tv"
+                            style="@style/boldBlackTwelveText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:text="@{@string/from_grams(consumedNutrientsViewModel.consumedSugar, consumedNutrientsViewModel.recommendedSugar)}"
+                            android:textColor="@color/gray"
+                            app:layout_constraintStart_toEndOf="@+id/sugar_image"
+                            app:layout_constraintTop_toBottomOf="@+id/sugar_guideline" />
 
                         <TextView
                             android:id="@+id/sugar_percentage_tv"
-                            style="@style/consumedScreenTextRegular"
+                            style="@style/regularBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedSugar / consumedNutrientsViewModel.recommendedSugar * 100)}" />
+                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedSugar / consumedNutrientsViewModel.recommendedSugar * 100)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/sugar_consumed_tv"
-                            style="@style/consumedScreenTextBold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="@{@string/grams(consumedNutrientsViewModel.consumedSugar)}" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/sugar_recommended_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:text="@{@string/from_grams(consumedNutrientsViewModel.recommendedSugar)}" />
-
-                    </LinearLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/salt_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="15dp">
-
-                    <LinearLayout
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/salt_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_marginTop="25dp">
+
+                        <ImageView
+                            android:id="@+id/salt_image"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/image_view_round_bg"
+                            android:contentDescription="@string/water"
+                            android:padding="16dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_salt"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/salt_tv"
-                            style="@style/consumedScreenTextBold"
+                            style="@style/blackBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="15dp"
-                            android:text="@string/salt" />
+                            android:layout_marginStart="25dp"
+                            android:text="@string/salt"
+                            app:layout_constraintBottom_toTopOf="@+id/salt_guideline"
+                            app:layout_constraintStart_toEndOf="@+id/salt_image" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/salt_guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_percent="0.5" />
+
+                        <TextView
+                            android:id="@+id/consumed_salt_tv"
+                            style="@style/boldBlackTwelveText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:text="@{@string/from_grams(consumedNutrientsViewModel.consumedSalt, consumedNutrientsViewModel.recommendedSalt)}"
+                            android:textColor="@color/gray"
+                            app:layout_constraintStart_toEndOf="@+id/salt_image"
+                            app:layout_constraintTop_toBottomOf="@+id/salt_guideline" />
 
                         <TextView
                             android:id="@+id/salt_percentage_tv"
-                            style="@style/consumedScreenTextRegular"
+                            style="@style/regularBlackTwelveText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedSalt / consumedNutrientsViewModel.recommendedSalt * 100)}" />
+                            android:text="@{@string/percentage(consumedNutrientsViewModel.consumedSalt / consumedNutrientsViewModel.recommendedSalt * 100)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/salt_consumed_tv"
-                            style="@style/consumedScreenTextBold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="25dp"
-                            android:text="@{@string/grams(consumedNutrientsViewModel.consumedSalt)}" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/salt_recommended_tv"
-                            style="@style/consumedScreenTextRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="15dp"
-                            android:text="@{@string/from_grams(consumedNutrientsViewModel.recommendedSalt)}" />
+                </LinearLayout>
 
-                    </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                </androidx.cardview.widget.CardView>
+        </ScrollView>
 
-            </LinearLayout>
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </layout>

@@ -1,7 +1,6 @@
 package kyrylost.apps.eatwise.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,19 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kyrylost.apps.eatwise.adapters.FoodAdapter
+import kyrylost.apps.eatwise.adapters.FoodSearchAdapter
 import kyrylost.apps.eatwise.databinding.FoodListFragmentBinding
 import kyrylost.apps.eatwise.fragments.dialogs.FoodDialogFragment
 import kyrylost.apps.eatwise.model.FavoriteFood
 import kyrylost.apps.eatwise.viewmodel.FavoriteFoodViewModel
-import kyrylost.apps.eatwise.viewmodel.FoodViewModel
+import kyrylost.apps.eatwise.viewmodel.FoodSearchViewModel
 
 class FoodListFragment : Fragment() {
     private var _binding: FoodListFragmentBinding? = null
     private val binding get() = _binding!!
-    private val foodViewModel: FoodViewModel by activityViewModels()
+    private val foodSearchViewModel: FoodSearchViewModel by activityViewModels()
     private val favoriteFoodViewModel: FavoriteFoodViewModel by activityViewModels()
-    private var adapter: FoodAdapter? = null
+    private var adapter: FoodSearchAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,7 +57,7 @@ class FoodListFragment : Fragment() {
     }
 
     private fun initView() {
-        adapter = FoodAdapter(requireContext())
+        adapter = FoodSearchAdapter(requireContext())
         binding.foodRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.foodRecyclerView.adapter = adapter
 
@@ -74,7 +73,7 @@ class FoodListFragment : Fragment() {
 
     private fun collectUiState(query: String) {
         viewLifecycleOwner.lifecycleScope.launch {
-            foodViewModel.searchFood(query).collectLatest { food ->
+            foodSearchViewModel.searchFood(query).collectLatest { food ->
                 launch(Dispatchers.Main) {
                     adapter?.loadStateFlow?.collectLatest { loadStates ->
 

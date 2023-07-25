@@ -23,21 +23,21 @@
     <string name="active">Active</string>
     <string name="sedentary">Sedentary</string>
     <string name="amount_of_trainings">Amount of trainings per week</string>
-    <string name="from">from %.1f</string>
+    <string name="consumed_calories">%.1f of %.1f</string>
     <string name="percentage">%.1f%%</string>
     <string name="calories">Calories</string>
     <string name="water">Water</string>
     <string name="litres">%.1fL</string>
-    <string name="from_litres">from %.1fL</string>
+    <string name="from_litres">%.1fL of %.1fL</string>
     <string name="grams">%.1fg</string>
-    <string name="from_grams">from %.1fg</string>
+    <string name="from_grams">%.1fg of %.1fg</string>
     <string name="proteins">Proteins</string>
     <string name="carbs">Carbs</string>
     <string name="fats">Fats</string>
     <string name="fiber">Fiber</string>
     <string name="sugar">Sugar</string>
     <string name="salt">Salt</string>
-    <string name="consumed_today">Consumed today</string>
+    <string name="consumed_today">Hello, this is what You \n have consumed today</string>
     <string name="consumption">Consumption</string>
     <string name="food">Food</string>
     <string name="user_page">User page</string>
@@ -47,7 +47,7 @@
     <string name="food_list_protein">Protein: %.1fg</string>
     <string name="food_list_carbs">Carbs: %.1fg</string>
     <string name="food_list_fat">Fat: %.1fg</string>
-    <string name="food_list_water">Water: %.1fg</string>
+    <string name="food_list_water">Water: %.1fml</string>
     <string name="food_list_fiber">Fiber: %.1fg</string>
     <string name="food_list_sugar">Sugar: %.1fg</string>
     <string name="food_list_salt">Salt: %.1fmg</string>
@@ -125,5 +125,6 @@
     <string name="ml">(ml)</string>
     <string name="favorite">Favorite</string>
     <string name="own_food">Own food</string>
+    <string name="nutrients">Nutrients</string>
 
 </resources>

@@ -11,7 +11,7 @@ import kyrylost.apps.eatwise.model.FoodSearchResponse
 import javax.inject.Inject
 
 @HiltViewModel
-class FoodViewModel @Inject constructor(
+class FoodSearchViewModel @Inject constructor(
     private val foodApiRepository: FoodApiRepository
 ): ViewModel() {
 

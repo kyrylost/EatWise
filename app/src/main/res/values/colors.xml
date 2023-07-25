@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="accent">#6B49FF</color>
+    <color name="blue">#87E2FF</color>
     <color name="light_blue">#BDEFFF</color>
     <color name="light_red">#FFBDBD</color>
     <color name="accent_dark">#5B3EDC</color>

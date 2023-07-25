@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/consumedScreenTitle"
+        style="@style/blackBlackSixteenText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -18,7 +18,7 @@
 
     <TextView
         android:id="@+id/food_name"
-        style="@style/consumedScreenTextBold"
+        style="@style/boldBlackTwelveText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -52,7 +52,7 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/calories"
-                style="@style/consumedScreenTextBold"
+                style="@style/boldBlackTwelveText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -83,7 +83,7 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/water"
-                style="@style/consumedScreenTextBold"
+                style="@style/boldBlackTwelveText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -121,7 +121,7 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/protein"
-                style="@style/consumedScreenTextBold"
+                style="@style/boldBlackTwelveText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -152,7 +152,7 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/fiber"
-                style="@style/consumedScreenTextBold"
+                style="@style/boldBlackTwelveText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -190,7 +190,7 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/carbs"
-                style="@style/consumedScreenTextBold"
+                style="@style/boldBlackTwelveText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -221,7 +221,7 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/sugar"
-                style="@style/consumedScreenTextBold"
+                style="@style/boldBlackTwelveText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -259,7 +259,7 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/fats"
-                style="@style/consumedScreenTextBold"
+                style="@style/boldBlackTwelveText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -290,7 +290,7 @@
             android:layout_weight="1">
             <TextView
                 android:id="@+id/salt"
-                style="@style/consumedScreenTextBold"
+                style="@style/boldBlackTwelveText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"

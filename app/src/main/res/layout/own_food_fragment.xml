@@ -10,7 +10,7 @@
 
         <TextView
             android:id="@+id/foodListTitle"
-            style="@style/consumedScreenTitle"
+            style="@style/blackBlackSixteenText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -27,14 +27,14 @@
 
             <TextView
                 android:id="@+id/search_tb"
-                style="@style/personalPageTitlesText"
+                style="@style/boldBlackFourteenText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/search" />
 
             <TextView
                 android:id="@+id/favorite_tb"
-                style="@style/personalPageTitlesText"
+                style="@style/boldBlackFourteenText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/own_tb"
-                style="@style/radioButtonPersonalPageStyle"
+                style="@style/regularBlackFourteenText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"

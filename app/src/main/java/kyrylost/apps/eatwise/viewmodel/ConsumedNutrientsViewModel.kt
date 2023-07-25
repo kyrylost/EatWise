@@ -189,7 +189,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
         if (amount != null) {
             val amountCoefficient = amount / 100
             updateConsumedCalories(foodData.calories * amountCoefficient)
-            updateConsumedWater(foodData.water * amountCoefficient)
+            updateConsumedWater((foodData.water / 1000) * amountCoefficient)
             updateConsumedProteins(foodData.proteins * amountCoefficient, false)
             updateConsumedCarbs(foodData.carbs * amountCoefficient, false)
             updateConsumedFats(foodData.fats * amountCoefficient, false)

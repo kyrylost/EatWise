@@ -10,7 +10,7 @@ import kyrylost.apps.eatwise.model.FoodData
 import kyrylost.apps.eatwise.model.FoodSearchResponse.Food
 import kyrylost.apps.eatwise.viewholders.FoodViewHolder
 
-class FoodAdapter(private val context: Context) : PagingDataAdapter<Food, FoodViewHolder>(FoodDiffCallBack()) {
+class FoodSearchAdapter(private val context: Context) : PagingDataAdapter<Food, FoodViewHolder>(FoodDiffCallBack()) {
 
     var onItemClick : ((FoodData) -> Unit)? = null
     var onAddToFavoriteClick : ((FoodData) -> Unit)? = null

@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/consumedScreenTitle"
+        style="@style/blackBlackSixteenText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/subtitle"
-        style="@style/consumedScreenTextBold"
+        style="@style/blackBlackTwelveText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/note"
-        style="@style/consumedScreenTextRegular"
+        style="@style/regularBlackTwelveText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -39,7 +39,7 @@
 
     <TextView
         android:id="@+id/nutrient_and_unit"
-        style="@style/consumedScreenTextBold"
+        style="@style/blackBlackTwelveText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/firstLaunchFragment"
-        android:name="kyrylost.apps.eatwise.fragments.FirstLaunchFragment"
+        android:name="kyrylost.apps.eatwise.fragments.auth.FirstLaunchFragment"
         android:label="FirstLaunchFragment" >
         <action
             android:id="@+id/action_firstLaunchFragment_to_signUpFirstFragment"

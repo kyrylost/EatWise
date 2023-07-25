@@ -74,19 +74,19 @@
     </style>
 
 
-    <style name="consumedScreenTitle" parent="Widget.AppCompat.TextView">
+    <style name="blackBlackSixteenText" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/nunito_black</item>
     </style>
 
-    <style name="consumedScreenTextBold" parent="Widget.AppCompat.TextView">
+    <style name="blackBlackTwelveText" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/nunito_black</item>
     </style>
 
-    <style name="consumedScreenTextRegular" parent="Widget.AppCompat.TextView">
+    <style name="regularBlackTwelveText" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/nunito_regular</item>
@@ -103,13 +103,13 @@
     </style>
 
 
-    <style name="foodListItemTextBold" parent="Widget.AppCompat.TextView">
+    <style name="boldBlackTwelveText" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/nunito_bold</item>
     </style>
 
-    <style name="foodListItemTextLight" parent="Widget.AppCompat.TextView">
+    <style name="lightBlackTwelveText" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/nunito_extralight</item>
@@ -123,7 +123,7 @@
         <item name="android:padding">15.25dp</item>
     </style>
 
-    <style name="foodListErrorText" parent="Widget.AppCompat.TextView">
+    <style name="errorText" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@color/red</item>
         <item name="android:fontFamily">@font/nunito_regular</item>
@@ -141,10 +141,16 @@
         <item name="android:fontFamily">@font/nunito_bold</item>
     </style>
 
-    <style name="personalPageTitlesText" parent="Widget.AppCompat.TextView">
+    <style name="boldBlackFourteenText" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/nunito_bold</item>
+    </style>
+
+    <style name="regularBlackFourteenText" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
     </style>
 
     <style name="radioButtonPersonalPageStyle" parent="Widget.AppCompat.TextView">

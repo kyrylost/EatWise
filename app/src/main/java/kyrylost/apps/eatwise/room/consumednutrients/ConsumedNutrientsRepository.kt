@@ -37,4 +37,7 @@ class ConsumedNutrientsRepository @Inject constructor(
     fun getConsumedNutrients() =
         consumedNutrientsDao.getConsumedNutrients()
 
+    fun resetConsumedNutrients(consumedNutrients: ConsumedNutrients) =
+        consumedNutrientsDao.resetConsumedNutrients(consumedNutrients)
+
 }

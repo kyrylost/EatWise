@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/name"
-            style="@style/foodListItemTextBold"
+            style="@style/boldBlackTwelveText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -38,28 +38,28 @@
 
             <TextView
                 android:id="@+id/cal"
-                style="@style/foodListItemTextLight"
+                style="@style/lightBlackTwelveText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <TextView
                 android:id="@+id/protein"
-                style="@style/foodListItemTextLight"
+                style="@style/lightBlackTwelveText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <TextView
                 android:id="@+id/carbs"
-                style="@style/foodListItemTextLight"
+                style="@style/lightBlackTwelveText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <TextView
                 android:id="@+id/fat"
-                style="@style/foodListItemTextLight"
+                style="@style/lightBlackTwelveText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
@@ -77,28 +77,28 @@
 
             <TextView
                 android:id="@+id/water"
-                style="@style/foodListItemTextLight"
+                style="@style/lightBlackTwelveText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <TextView
                 android:id="@+id/fiber"
-                style="@style/foodListItemTextLight"
+                style="@style/lightBlackTwelveText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <TextView
                 android:id="@+id/sugar"
-                style="@style/foodListItemTextLight"
+                style="@style/lightBlackTwelveText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />
 
             <TextView
                 android:id="@+id/salt"
-                style="@style/foodListItemTextLight"
+                style="@style/lightBlackTwelveText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" />

@@ -1,4 +1,4 @@
-package kyrylost.apps.eatwise.fragments
+package kyrylost.apps.eatwise.fragments.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,14 +25,13 @@ class FirstLaunchFragment : Fragment(R.layout.first_launch_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.signInButton.setOnClickListener {
-            val action = FirstLaunchFragmentDirections
-                .actionFirstLaunchFragmentToSignInFragment()
+            val action = FirstLaunchFragmentDirections.actionFirstLaunchFragmentToSignInFragment()
             findNavController().navigate(action)
         }
 
         binding.createAccountButton.setOnClickListener {
-            val action = FirstLaunchFragmentDirections
-                .actionFirstLaunchFragmentToSignUpFirstFragment()
+            val action =
+                FirstLaunchFragmentDirections.actionFirstLaunchFragmentToSignUpFirstFragment()
             findNavController().navigate(action)
         }
     }
