@@ -1,12 +1,12 @@
 package kyrylost.apps.eatwise.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import kyrylost.apps.eatwise.databinding.PersonalPageFragmentBinding
@@ -40,10 +40,18 @@ class PersonalPageFragment : Fragment() {
                 }
                 else binding.progressTV.visibility = View.INVISIBLE
             }
-
             override fun onStartTrackingTouch(seekBar: SeekBar) {}
             override fun onStopTrackingTouch(seekBar: SeekBar) {}
         })
+
+        binding.trainingsSeekBar.doOnPreDraw {
+            val pos = binding.trainingsSeekBar.progress * (binding.trainingsSeekBar.width - 2 *
+                    binding.trainingsSeekBar.thumbOffset) / binding.trainingsSeekBar.max
+
+            binding.progressTV.text = "${binding.trainingsSeekBar.progress}"
+            binding.progressTV.x = binding.trainingsSeekBar.x + pos + binding.trainingsSeekBar.thumbOffset / 2
+            binding.progressTV.visibility = View.VISIBLE
+        }
 
         binding.saveButton.setOnClickListener {
             userViewModel.updateUserData(
