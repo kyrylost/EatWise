@@ -6,14 +6,18 @@
         <item name="colorPrimaryVariant">@color/accent_dark</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="colorSecondaryVariant">@color/very_light_gray</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/black</item>
         <!-- Customize your theme here. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="customCardView" parent="CardView">
+        <item name="cardElevation">6dp</item>
     </style>
 
     <style name="authScreenTitle" parent="Widget.AppCompat.TextView">
@@ -157,6 +161,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:drawableStart">@drawable/radio_btn_bg_selector_dark</item>
     </style>
 
     <style name="personalPageSeekbar" parent="Widget.AppCompat.SeekBar">

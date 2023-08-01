@@ -77,13 +77,13 @@
             android:paddingBottom="100dp">
 
             <androidx.cardview.widget.CardView
+                style="@style/customCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="25dp"
-                app:cardCornerRadius="15dp"
-                app:cardElevation="6dp"
+                app:cardCornerRadius="40dp"
                 app:cardMaxElevation="6dp">
 
                 <LinearLayout
@@ -248,7 +248,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            app:layout_constraintGuide_percent="0.5" />
+                            app:layout_constraintGuide_begin="31dp" />
 
                         <TextView
                             android:id="@+id/consumed_carb_tv"
