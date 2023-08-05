@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "consumed_nutrients")
 data class ConsumedNutrients(
-    @PrimaryKey val id : Int = 1,
+    @PrimaryKey var id : Int = 1,
     @ColumnInfo(name = "calories") val calories: Double = 0.0,
     @ColumnInfo(name = "water") val water: Double = 0.0,
     @ColumnInfo(name = "proteins") val proteins: Double = 0.0,

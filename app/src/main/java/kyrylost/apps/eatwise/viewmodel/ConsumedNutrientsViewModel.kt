@@ -1,12 +1,12 @@
 package kyrylost.apps.eatwise.viewmodel
 
-import android.util.Log
 import androidx.databinding.ObservableDouble
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kyrylost.apps.eatwise.SingleLiveEvent
 import kyrylost.apps.eatwise.model.ConsumedNutrients
 import kyrylost.apps.eatwise.model.FoodData
 import kyrylost.apps.eatwise.model.User
@@ -52,11 +52,11 @@ class ConsumedNutrientsViewModel @Inject constructor(
     var consumedSugar = ObservableDouble(0.0)
     var consumedSalt = ObservableDouble(0.0)
 
+    val yesterdayConsumedNutrientsSingleLiveEvent = SingleLiveEvent<ConsumedNutrients>()
+
     fun calculateRecommendedNutrients() {
         CoroutineScope(Dispatchers.IO).launch {
             user = userRepository.getUser()!!
-
-            Log.d("ConsNVM", user.toString())
 
             val userBirthDate = user.birthDate
             val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
@@ -146,19 +146,18 @@ class ConsumedNutrientsViewModel @Inject constructor(
             recommendedCarbs.set((recommendedCalories.get() * carbsCoefficient) / 4)
             recommendedFats.set((recommendedCalories.get() * fatsCoefficient) / 9)
 
-            Log.d("calc", "$recommendedCalories $recommendedWater $recommendedProteins")
         }
     }
 
     fun getConsumedNutrients() {
         CoroutineScope(Dispatchers.IO).launch {
 
-            var consumedNutrients = consumedNutrientsRepository.getConsumedNutrients()
+            var consumedNutrients = consumedNutrientsRepository.getConsumedNutrients(1)
 
             if (consumedNutrients == null) {
 
                 consumedNutrientsRepository.insertConsumedNutrients(ConsumedNutrients()).apply {
-                    consumedNutrients = consumedNutrientsRepository.getConsumedNutrients()?.apply {
+                    consumedNutrients = consumedNutrientsRepository.getConsumedNutrients(1)?.apply {
                         consumedCalories.set(calories)
                         consumedWater.set(water)
                         consumedProteins.set(proteins)
@@ -181,6 +180,16 @@ class ConsumedNutrientsViewModel @Inject constructor(
                 consumedSugar.set(consumedNutrients!!.sugar)
                 consumedSalt.set(consumedNutrients!!.salt)
 
+            }
+        }
+    }
+
+    fun getYesterdayConsumedNutrients() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val yesterdayConsumedNutrients = consumedNutrientsRepository.getConsumedNutrients(2)
+            if (yesterdayConsumedNutrients != null) {
+                yesterdayConsumedNutrientsSingleLiveEvent.postValue(yesterdayConsumedNutrients)
+                consumedNutrientsRepository.deleteConsumedNutrients(yesterdayConsumedNutrients)
             }
         }
     }

@@ -1,16 +1,19 @@
 package kyrylost.apps.eatwise.room.consumednutrients
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import kyrylost.apps.eatwise.model.ConsumedNutrients
 
 @Dao
 interface ConsumedNutrientsDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertConsumedNutrients(consumedNutrients: ConsumedNutrients)
+
+    @Query("SELECT * FROM consumed_nutrients WHERE id = :id")
+    fun getConsumedNutrients(id: Int): ConsumedNutrients?
+
+    @Delete
+    fun deleteConsumedNutrients(consumedNutrients: ConsumedNutrients)
 
     @Query("UPDATE consumed_nutrients SET calories = :updatedValue WHERE id = 1")
     fun updateConsumedCalories(updatedValue: Double)
@@ -35,9 +38,6 @@ interface ConsumedNutrientsDao {
 
     @Query("UPDATE consumed_nutrients SET salt = :updatedValue WHERE id = 1")
     fun updateConsumedSalt(updatedValue: Double)
-
-    @Query("SELECT * FROM consumed_nutrients WHERE id = 1")
-    fun getConsumedNutrients(): ConsumedNutrients?
 
     @Update
     fun resetConsumedNutrients(row: ConsumedNutrients)

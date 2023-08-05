@@ -19,7 +19,6 @@ class CustomRadioGroup @JvmOverloads constructor(
         }
 
     fun getCheckedItemNumber(): Int {
-        val checkedRadioButtonId = checkedRadioButtonId
         return indexOfChild(findViewById(checkedRadioButtonId))
     }
 

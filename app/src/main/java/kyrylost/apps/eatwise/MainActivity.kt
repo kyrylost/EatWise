@@ -2,6 +2,7 @@ package kyrylost.apps.eatwise
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +27,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        scheduleDatabaseResetAtSpecificTime(applicationContext)
+
+        val taskScheduledSharedPreferences = this.getSharedPreferences(
+            "isTaskScheduled", Context.MODE_PRIVATE
+        ) ?: return
+        val isTaskScheduled = taskScheduledSharedPreferences.getBoolean("isTaskScheduled", false)
+        if (!isTaskScheduled) {
+            scheduleDatabaseResetAtSpecificTime(applicationContext)
+            Log.d("mainActivity", "task is scheduled")
+        }
 
         navBar = findViewById(R.id.navBar)
 

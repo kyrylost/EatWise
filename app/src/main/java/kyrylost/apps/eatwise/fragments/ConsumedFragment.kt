@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import kyrylost.apps.eatwise.fragments.dialogs.NutrientDialogFragment
 import kyrylost.apps.eatwise.R
 import kyrylost.apps.eatwise.databinding.ConsumedFragmentBinding
+import kyrylost.apps.eatwise.fragments.dialogs.YesterdayConsumedNutrientsDialogFragment
 import kyrylost.apps.eatwise.viewmodel.ConsumedNutrientsViewModel
 
 class ConsumedFragment : Fragment() {
@@ -29,6 +30,12 @@ class ConsumedFragment : Fragment() {
         binding.consumedNutrientsViewModel = consumedNutrientsViewModel
         consumedNutrientsViewModel.calculateRecommendedNutrients()
         consumedNutrientsViewModel.getConsumedNutrients()
+        consumedNutrientsViewModel.getYesterdayConsumedNutrients()
+
+        consumedNutrientsViewModel.yesterdayConsumedNutrientsSingleLiveEvent.observe(viewLifecycleOwner) {
+            val dialogFragment = YesterdayConsumedNutrientsDialogFragment(it)
+            dialogFragment.show(childFragmentManager, "yesterday_consumed_nutrients_dialog_fragment")
+        }
 
         binding.waterCard.setOnClickListener {
             val dialogFragment = NutrientDialogFragment(

@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kyrylost.apps.eatwise.adapters.FavoriteFoodAdapter
 import kyrylost.apps.eatwise.databinding.FavoriteFoodFragmentBinding
 import kyrylost.apps.eatwise.fragments.dialogs.FoodDialogFragment
-import kyrylost.apps.eatwise.model.FavoriteFood
 import kyrylost.apps.eatwise.viewmodel.FavoriteFoodViewModel
-import java.util.LinkedList
 
 class FavoriteFoodFragment : Fragment() {
     private var _binding: FavoriteFoodFragmentBinding? = null

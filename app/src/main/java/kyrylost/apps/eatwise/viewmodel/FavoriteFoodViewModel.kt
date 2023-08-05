@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import kyrylost.apps.eatwise.model.FavoriteFood
 import kyrylost.apps.eatwise.room.favoritefood.FavoriteFoodRepository
 import java.util.LinkedList

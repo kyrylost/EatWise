@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/popup_background"
+    android:padding="25dp">
+
+    <TextView
+        android:id="@+id/yesterday_cons"
+        style="@style/blackBlackSixteenText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/yesterday_you_consumed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/caloriesTV"
+        style="@style/blackBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="@string/calories"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/yesterday_cons" />
+
+    <TextView
+        android:id="@+id/calories"
+        style="@style/regularBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="25dp"
+        app:layout_constraintStart_toEndOf="@+id/caloriesTV"
+        app:layout_constraintTop_toBottomOf="@id/yesterday_cons" />
+
+    <TextView
+        android:id="@+id/waterTV"
+        style="@style/blackBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/water"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/caloriesTV" />
+
+    <TextView
+        android:id="@+id/water"
+        style="@style/regularBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/waterTV"
+        app:layout_constraintTop_toBottomOf="@id/caloriesTV" />
+
+    <TextView
+        android:id="@+id/proteinsTV"
+        style="@style/blackBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/proteins"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/waterTV" />
+
+    <TextView
+        android:id="@+id/proteins"
+        style="@style/regularBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/proteinsTV"
+        app:layout_constraintTop_toBottomOf="@id/waterTV" />
+
+    <TextView
+        android:id="@+id/carbsTV"
+        style="@style/blackBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/carbs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/proteinsTV" />
+
+    <TextView
+        android:id="@+id/carbs"
+        style="@style/regularBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/carbsTV"
+        app:layout_constraintTop_toBottomOf="@+id/proteinsTV" />
+
+    <TextView
+        android:id="@+id/fatsTV"
+        style="@style/blackBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/fats"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carbsTV" />
+
+    <TextView
+        android:id="@+id/fats"
+        style="@style/regularBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/fatsTV"
+        app:layout_constraintTop_toBottomOf="@+id/carbsTV" />
+
+    <TextView
+        android:id="@+id/fiberTV"
+        style="@style/blackBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/fiber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fatsTV" />
+
+    <TextView
+        android:id="@+id/fiber"
+        style="@style/regularBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/fiberTV"
+        app:layout_constraintTop_toBottomOf="@+id/fatsTV" />
+
+    <TextView
+        android:id="@+id/sugarTV"
+        style="@style/blackBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/sugar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fiberTV" />
+
+    <TextView
+        android:id="@+id/sugar"
+        style="@style/regularBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/sugarTV"
+        app:layout_constraintTop_toBottomOf="@+id/fiberTV" />
+
+    <TextView
+        android:id="@+id/saltTV"
+        style="@style/blackBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/salt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sugarTV" />
+
+    <TextView
+        android:id="@+id/salt"
+        style="@style/regularBlackTwelveText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toEndOf="@id/saltTV"
+        app:layout_constraintTop_toBottomOf="@+id/sugarTV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

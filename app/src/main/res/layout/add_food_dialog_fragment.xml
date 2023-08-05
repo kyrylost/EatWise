@@ -14,7 +14,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
-        android:text="Add Your own food" />
+        android:text="@string/add_your_own_food" />
 
     <TextView
         android:id="@+id/food_name"
@@ -24,7 +24,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
-        android:text="Food name" />
+        android:text="@string/food_name" />
 
     <EditText
         android:id="@+id/food_name_et"
@@ -36,7 +36,7 @@
         android:layout_marginEnd="25dp"
         android:autofillHints=""
         android:background="@drawable/edit_text_background"
-        android:hint="Food name"
+        android:hint="@string/food_name"
         android:inputType="text"
         android:maxLines="1"
         android:textCursorDrawable="@null" />

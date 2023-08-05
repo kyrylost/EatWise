@@ -1,6 +1,7 @@
 package kyrylost.apps.eatwise.reseter
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -10,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kyrylost.apps.eatwise.model.ConsumedNutrients
 import kyrylost.apps.eatwise.room.consumednutrients.ConsumedNutrientsRepository
+import java.util.Calendar
 
 @HiltWorker
 class ResetDatabaseWorker @AssistedInject constructor(
@@ -20,7 +22,14 @@ class ResetDatabaseWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result = withContext(Dispatchers.IO) {
         try {
+            val consumedNutrients = repository.getConsumedNutrients(1)
             repository.resetConsumedNutrients(ConsumedNutrients())
+            if (consumedNutrients != null) {
+                consumedNutrients.id = 2
+                repository.insertConsumedNutrients(consumedNutrients)
+            }
+            scheduleDatabaseResetAtSpecificTime(applicationContext)
+
             Result.success()
         } catch (e: Exception) {
             Result.retry()

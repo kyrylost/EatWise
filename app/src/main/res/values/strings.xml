@@ -126,5 +126,8 @@
     <string name="favorite">Favorite</string>
     <string name="own_food">Own food</string>
     <string name="nutrients">Nutrients</string>
+    <string name="add_your_own_food">Add Your own food</string>
+    <string name="food_name">Food name</string>
+    <string name="yesterday_you_consumed">Yesterday you consumed:</string>
 
 </resources>

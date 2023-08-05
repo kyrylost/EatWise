@@ -1,6 +1,5 @@
 package kyrylost.apps.eatwise.firebase
 
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +22,6 @@ class FirebaseRepository @Inject constructor(): FirebaseDatabase() {
                     if (authInstance.currentUser != null) {
                         currentUserDb = getCurrentUserDatabase(authInstance.currentUser!!.uid)
 
-                        Log.d("test1", currentUserDb.toString())
                         setAllFields(birthday, weight, sex, work, trainings, diet)
 
                         //Trigger callback to save user to ROOM
@@ -77,7 +75,6 @@ class FirebaseRepository @Inject constructor(): FirebaseDatabase() {
                      sex: Int, work: Int,
                      trainings: Int, diet: Int
     ) {
-        Log.d("test", currentUserDb.toString())
         setBirthDate(birthday)
         setWeight(weight)
         setSex(sex)

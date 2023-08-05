@@ -10,6 +10,12 @@ class ConsumedNutrientsRepository @Inject constructor(
     fun insertConsumedNutrients(consumedNutrients: ConsumedNutrients) =
         consumedNutrientsDao.insertConsumedNutrients(consumedNutrients)
 
+    fun getConsumedNutrients(id: Int): ConsumedNutrients? =
+        consumedNutrientsDao.getConsumedNutrients(id)
+
+    fun deleteConsumedNutrients(consumedNutrients: ConsumedNutrients) =
+        consumedNutrientsDao.deleteConsumedNutrients(consumedNutrients)
+
     fun updateConsumedCalories(updatedValue: Double) =
         consumedNutrientsDao.updateConsumedCalories(updatedValue)
 
@@ -33,9 +39,6 @@ class ConsumedNutrientsRepository @Inject constructor(
 
     fun updateConsumedSalt(updatedValue: Double) =
         consumedNutrientsDao.updateConsumedSalt(updatedValue)
-
-    fun getConsumedNutrients() =
-        consumedNutrientsDao.getConsumedNutrients()
 
     fun resetConsumedNutrients(consumedNutrients: ConsumedNutrients) =
         consumedNutrientsDao.resetConsumedNutrients(consumedNutrients)
