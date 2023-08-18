@@ -15,7 +15,7 @@ class FoodSearchViewModel @Inject constructor(
     private val foodApiRepository: FoodApiRepository
 ): ViewModel() {
 
-    val apiKey =  "fdRZzjj40XfaiBJhfE5y64iehfuJj6vh6A2eZYFI"
+    private val apiKey =  "fdRZzjj40XfaiBJhfE5y64iehfuJj6vh6A2eZYFI"
 
     fun searchFood(query: String): Flow<PagingData<FoodSearchResponse.Food>> =
         foodApiRepository.searchFoods(query, apiKey).cachedIn(viewModelScope)

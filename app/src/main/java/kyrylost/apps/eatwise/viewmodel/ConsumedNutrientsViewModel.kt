@@ -2,8 +2,8 @@ package kyrylost.apps.eatwise.viewmodel
 
 import androidx.databinding.ObservableDouble
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.SingleLiveEvent
@@ -55,7 +55,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     val yesterdayConsumedNutrientsSingleLiveEvent = SingleLiveEvent<ConsumedNutrients>()
 
     fun calculateRecommendedNutrients() {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             user = userRepository.getUser()!!
 
             val userBirthDate = user.birthDate
@@ -150,7 +150,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     fun getConsumedNutrients() {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
 
             var consumedNutrients = consumedNutrientsRepository.getConsumedNutrients(1)
 
@@ -185,7 +185,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     fun getYesterdayConsumedNutrients() {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val yesterdayConsumedNutrients = consumedNutrientsRepository.getConsumedNutrients(2)
             if (yesterdayConsumedNutrients != null) {
                 yesterdayConsumedNutrientsSingleLiveEvent.postValue(yesterdayConsumedNutrients)
@@ -209,7 +209,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     private fun updateConsumedCalories(consumed: Double?) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (consumed != null) {
                 consumedCalories.add(consumed)
                 consumedNutrientsRepository.updateConsumedCalories(consumedCalories.get())
@@ -218,7 +218,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     fun updateConsumedWater(consumed: Double?) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (consumed != null) {
                 consumedWater.add(consumed)
                 consumedNutrientsRepository.updateConsumedWater(consumedWater.get())
@@ -227,18 +227,17 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     fun updateConsumedProteins(consumed: Double?, updateCalories: Boolean = true) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (consumed != null) {
                 consumedProteins.add(consumed)
                 consumedNutrientsRepository.updateConsumedProteins(consumedProteins.get())
                 if (updateCalories) updateConsumedCalories(consumed * 4)
             }
         }
-
     }
 
     fun updateConsumedCarbs(consumed: Double?, updateCalories: Boolean = true) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (consumed != null) {
                 consumedCarbs.add(consumed)
                 consumedNutrientsRepository.updateConsumedCarbs(consumedCarbs.get())
@@ -248,7 +247,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     fun updateConsumedFats(consumed: Double?, updateCalories: Boolean = true) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (consumed != null) {
                 consumedFats.add(consumed)
                 consumedNutrientsRepository.updateConsumedFats(consumedFats.get())
@@ -258,7 +257,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     fun updateConsumedFiber(consumed: Double?, updateCalories: Boolean = true) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (consumed != null) {
                 consumedFiber.add(consumed)
                 consumedNutrientsRepository.updateConsumedFiber(consumedFiber.get())
@@ -268,7 +267,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     fun updateConsumedSugar(consumed: Double?, updateCalories: Boolean = true) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (consumed != null) {
                 consumedSugar.add(consumed)
                 consumedNutrientsRepository.updateConsumedSugar(consumedSugar.get())
@@ -278,7 +277,7 @@ class ConsumedNutrientsViewModel @Inject constructor(
     }
 
     fun updateConsumedSalt(consumed: Double?) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             if (consumed != null) {
                 consumedSalt.add(consumed)
                 consumedNutrientsRepository.updateConsumedSalt(consumedSalt.get())

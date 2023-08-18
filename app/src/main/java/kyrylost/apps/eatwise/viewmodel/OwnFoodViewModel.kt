@@ -2,8 +2,8 @@ package kyrylost.apps.eatwise.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.SingleLiveEvent
@@ -32,7 +32,7 @@ class OwnFoodViewModel @Inject constructor(
         if (foodName.isNullOrEmpty()) {
             emptyFieldErrorLiveData.postValue("Name field have to be filled!")
         } else {
-            CoroutineScope(Dispatchers.IO).launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 val foodData = FoodData(
                     foodName,
                     foodCalories?.toDoubleOrNull() ?: 0.0,
@@ -53,13 +53,13 @@ class OwnFoodViewModel @Inject constructor(
     }
 
     fun getOwnFoodList() {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             ownFoodLiveData.postValue(LinkedList(ownFoodRepository.getOwnFoodList()))
         }
     }
 
     fun deleteOwnFood(ownFood: OwnFood) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             ownFoodRepository.deleteOwnFood(ownFood)
         }
     }

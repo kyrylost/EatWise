@@ -2,8 +2,8 @@ package kyrylost.apps.eatwise.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.model.FavoriteFood
@@ -19,19 +19,19 @@ class FavoriteFoodViewModel @Inject constructor(
     val favoriteFoodLiveData = MutableLiveData<LinkedList<FavoriteFood>>()
 
     fun insertFavoriteFood(favoriteFood: FavoriteFood) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             favoriteFoodRepository.insertFavoriteFood(favoriteFood)
         }
     }
 
     fun getFavoriteFoodList() {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             favoriteFoodLiveData.postValue(LinkedList(favoriteFoodRepository.getFavoriteFoodList()))
         }
     }
 
     fun deleteFavoriteFood(favoriteFood: FavoriteFood) {
-        CoroutineScope(Dispatchers.IO).launch {
+        viewModelScope.launch(Dispatchers.IO) {
             favoriteFoodRepository.deleteFavoriteFood(favoriteFood)
         }
     }

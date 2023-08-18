@@ -5,7 +5,6 @@ import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -148,11 +147,9 @@ class UserViewModel @Inject constructor(
     }
 
     private fun createUser(user: User = buildUser()) {
-        viewModelScope.launch {
-            CoroutineScope(Dispatchers.IO).launch {
-                userRepository.createUser(user)
-                userAuthAndCreatingSuccessMutableLiveData.postValue(true)
-            }
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.createUser(user)
+            userAuthAndCreatingSuccessMutableLiveData.postValue(true)
         }
     }
 
@@ -224,7 +221,7 @@ class UserViewModel @Inject constructor(
                        newWork: Int, newTrainings: Int,
                        newDiet: Int) {
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
 
             if (newWeightString == "") {
                 fieldUpdateFailure.postValue("Please, input Your weight!")
@@ -243,10 +240,9 @@ class UserViewModel @Inject constructor(
                             fieldUpdateFailure.postValue(String.format(failMessage, "Weight"))
                         }
                     )
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateWeight(newWeight)
-                        userWeight.set(newWeight)
-                    }
+
+                    userRepository.updateWeight(newWeight)
+                    userWeight.set(newWeight)
                 }
 
                 if (newSex != userSex.get()) {
@@ -257,10 +253,9 @@ class UserViewModel @Inject constructor(
                             fieldUpdateFailure.postValue(String.format(failMessage, "Sex"))
                         }
                     )
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateSex(newSex)
-                        userSex.set(newSex)
-                    }
+
+                    userRepository.updateSex(newSex)
+                    userSex.set(newSex)
                 }
 
                 if (newWork != userWork.get()) {
@@ -271,10 +266,9 @@ class UserViewModel @Inject constructor(
                             fieldUpdateFailure.postValue(String.format(failMessage, "Work"))
                         }
                     )
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateWork(newWork)
-                        userWork.set(newWork)
-                    }
+
+                    userRepository.updateWork(newWork)
+                    userWork.set(newWork)
                 }
 
                 if (newTrainings != userTrainings.get()) {
@@ -285,10 +279,9 @@ class UserViewModel @Inject constructor(
                             fieldUpdateFailure.postValue(String.format(failMessage, "Trainings"))
                         }
                     )
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateTrainings(newTrainings)
-                        userTrainings.set(newTrainings)
-                    }
+
+                    userRepository.updateTrainings(newTrainings)
+                    userTrainings.set(newTrainings)
                 }
 
                 if (newDiet != userDiet.get()) {
@@ -299,10 +292,9 @@ class UserViewModel @Inject constructor(
                             fieldUpdateFailure.postValue(String.format(failMessage, "Diet"))
                         }
                     )
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateDiet(newDiet)
-                        userDiet.set(newDiet)
-                    }
+
+                    userRepository.updateDiet(newDiet)
+                    userDiet.set(newDiet)
                 }
 
             } else {
@@ -310,38 +302,28 @@ class UserViewModel @Inject constructor(
                 fieldUpdateFailure.postValue("Data will be saved to cloud after launch with an Internet!")
 
                 if (newWeight != userWeight.get()) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateWeight(newWeight)
-                        userWeight.set(newWeight)
-                    }
+                    userRepository.updateWeight(newWeight)
+                    userWeight.set(newWeight)
                 }
 
                 if (newSex != userSex.get()) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateSex(newSex)
-                        userSex.set(newSex)
-                    }
+                    userRepository.updateSex(newSex)
+                    userSex.set(newSex)
                 }
 
                 if (newWork != userWork.get()) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateWork(newWork)
-                        userWork.set(newWork)
-                    }
+                    userRepository.updateWork(newWork)
+                    userWork.set(newWork)
                 }
 
                 if (newTrainings != userTrainings.get()) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateTrainings(newTrainings)
-                        userTrainings.set(newTrainings)
-                    }
+                    userRepository.updateTrainings(newTrainings)
+                    userTrainings.set(newTrainings)
                 }
 
                 if (newDiet != userDiet.get()) {
-                    CoroutineScope(Dispatchers.IO).launch {
-                        userRepository.updateDiet(newDiet)
-                        userDiet.set(newDiet)
-                    }
+                    userRepository.updateDiet(newDiet)
+                    userDiet.set(newDiet)
                 }
             }
 
