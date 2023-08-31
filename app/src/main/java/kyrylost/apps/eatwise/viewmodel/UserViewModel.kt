@@ -62,10 +62,43 @@ class UserViewModel @Inject constructor(
             emailAndPasswordSetError.value = "Input an Email!"
             return
         }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailAndPasswordSetError.value = "Incorrect Email format!"
+            return
+        }
+
+
         if (password.isEmpty()) {
             emailAndPasswordSetError.value = "Input a Password!"
             return
         }
+
+        if (password.length < 8) {
+            emailAndPasswordSetError.value = "Minimum password length is 8!"
+            return
+        }
+
+        val lower = "[a-z]".toRegex()
+        val upper = "[A-Z]".toRegex()
+        val digits = "\\d".toRegex()
+
+        val lowersIn = lower.containsMatchIn(password)
+        val uppersIn = upper.containsMatchIn(password)
+        val digitsIn = digits.containsMatchIn(password)
+
+        if (!lowersIn || !uppersIn || !digitsIn) {
+            var invalidPasswordMessage = "Password doesn't contain "
+
+            invalidPasswordMessage += if(!lowersIn) "lowercase letter, " else ""
+            invalidPasswordMessage += if(!uppersIn) "uppercase letter, " else ""
+            invalidPasswordMessage += if(!digitsIn) "digit" else ""
+
+            emailAndPasswordSetError.value = invalidPasswordMessage
+                .replace(Regex(", $"), "")
+            return
+        }
+
 
         userEmail = email
         userPassword = password
