@@ -383,8 +383,11 @@ private fun Any?.anyToInt(): Int {
 
 private fun isDateValid(year: Int, month: Int, day: Int): Boolean {
     return try {
-        LocalDate.of(year, month, day)
-        true
+        if (year in 1907..LocalDate.now().year) {
+            LocalDate.of(year, month, day)
+            true
+        }
+        else false
     } catch (e: Exception) {
         false
     }

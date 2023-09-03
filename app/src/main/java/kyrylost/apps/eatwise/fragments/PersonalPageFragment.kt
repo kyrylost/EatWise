@@ -45,12 +45,14 @@ class PersonalPageFragment : Fragment() {
         })
 
         binding.trainingsSeekBar.doOnPreDraw {
-            val pos = binding.trainingsSeekBar.progress * (binding.trainingsSeekBar.width - 2 *
-                    binding.trainingsSeekBar.thumbOffset) / binding.trainingsSeekBar.max
+            if (binding.trainingsSeekBar.progress != 0 && binding.trainingsSeekBar.progress != 8) {
+                val pos = binding.trainingsSeekBar.progress * (binding.trainingsSeekBar.width - 2 *
+                        binding.trainingsSeekBar.thumbOffset) / binding.trainingsSeekBar.max
 
-            binding.progressTV.text = "${binding.trainingsSeekBar.progress}"
-            binding.progressTV.x = binding.trainingsSeekBar.x + pos + binding.trainingsSeekBar.thumbOffset / 2
-            binding.progressTV.visibility = View.VISIBLE
+                binding.progressTV.text = "${binding.trainingsSeekBar.progress}"
+                binding.progressTV.x = binding.trainingsSeekBar.x + pos + binding.trainingsSeekBar.thumbOffset / 2
+                binding.progressTV.visibility = View.VISIBLE
+            }
         }
 
         binding.saveButton.setOnClickListener {

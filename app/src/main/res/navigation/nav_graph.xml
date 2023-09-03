@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_signUpFirstFragment_to_signUpSecondFragment"
             app:destination="@id/signUpSecondFragment" />
+        <action
+            android:id="@+id/action_signUpFirstFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -32,6 +35,9 @@
             app:destination="@id/consumedFragment"
             app:popUpTo="@+id/nav_graph"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFirstFragment"
+            app:destination="@id/signUpFirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpSecondFragment"

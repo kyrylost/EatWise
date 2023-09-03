@@ -73,6 +73,12 @@ class SignInFragment : Fragment() {
 
             userViewModel.setEmailAndPassword(email, password)
         }
+
+        binding.signUpTv.setOnClickListener {
+            val navController =
+                SignInFragmentDirections.actionSignInFragmentToSignUpFirstFragment()
+            findNavController().navigate(navController)
+        }
     }
 
     override fun onDestroyView() {
