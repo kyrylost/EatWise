@@ -5,8 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import kyrylost.apps.eatwise.SingleLiveEvent
 import kyrylost.apps.eatwise.model.ConsumedNutrients
 import kyrylost.apps.eatwise.model.FoodData
 import kyrylost.apps.eatwise.model.User
@@ -52,7 +53,8 @@ class ConsumedNutrientsViewModel @Inject constructor(
     var consumedSugar = ObservableDouble(0.0)
     var consumedSalt = ObservableDouble(0.0)
 
-    val yesterdayConsumedNutrientsSingleLiveEvent = SingleLiveEvent<ConsumedNutrients>()
+    private val _yesterdayConsumedNutrientsSingleLiveEvent = MutableSharedFlow<ConsumedNutrients>()
+    val yesterdayConsumedNutrientsSingleLiveEvent = _yesterdayConsumedNutrientsSingleLiveEvent.asSharedFlow()
 
     fun calculateRecommendedNutrients() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -184,15 +186,14 @@ class ConsumedNutrientsViewModel @Inject constructor(
         }
     }
 
-    fun getYesterdayConsumedNutrients() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val yesterdayConsumedNutrients = consumedNutrientsRepository.getConsumedNutrients(2)
-            if (yesterdayConsumedNutrients != null) {
-                yesterdayConsumedNutrientsSingleLiveEvent.postValue(yesterdayConsumedNutrients)
-                consumedNutrientsRepository.deleteConsumedNutrients(yesterdayConsumedNutrients)
-            }
+    fun getYesterdayConsumedNutrients() = viewModelScope.launch(Dispatchers.IO) {
+        val yesterdayConsumedNutrients = consumedNutrientsRepository.getConsumedNutrients(2)
+        if (yesterdayConsumedNutrients != null) {
+            _yesterdayConsumedNutrientsSingleLiveEvent.emit(yesterdayConsumedNutrients)
+            consumedNutrientsRepository.deleteConsumedNutrients(yesterdayConsumedNutrients)
         }
     }
+
 
     fun updateNutrientsByFoodAmountAndData(amount: Double?, foodData: FoodData) {
         if (amount != null) {

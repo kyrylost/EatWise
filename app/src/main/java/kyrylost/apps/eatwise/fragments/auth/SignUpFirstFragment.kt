@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.SignUpFirstFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
 
@@ -27,20 +31,6 @@ class SignUpFirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userViewModel.emailAndPasswordSuccessfullySetted.observe(viewLifecycleOwner) {
-            val navController =
-                SignUpFirstFragmentDirections.actionSignUpFirstFragmentToSignUpSecondFragment()
-            findNavController().navigate(navController)
-        }
-
-        userViewModel.emailAndPasswordSetError.observe(viewLifecycleOwner) {
-            Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-
         binding.firstSignUpContinue.setOnClickListener {
             val email = binding.emailAddressEt.text.toString()
             val password = binding.passwordEt.text.toString()
@@ -54,6 +44,31 @@ class SignUpFirstFragment : Fragment() {
             findNavController().navigate(navController)
         }
 
+        subscribeToObservables()
+
+    }
+
+    private fun subscribeToObservables() {
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userViewModel.firstScreenFieldsSuccessfullySetted.collect {
+                    val navController =
+                        SignUpFirstFragmentDirections.actionSignUpFirstFragmentToSignUpSecondFragment()
+                    findNavController().navigate(navController)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userViewModel.firstScreenFieldsSetError.collect {
+                    Toast.makeText(
+                        requireContext(),
+                        it,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

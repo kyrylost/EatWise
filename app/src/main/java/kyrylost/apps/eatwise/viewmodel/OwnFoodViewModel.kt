@@ -1,12 +1,14 @@
 package kyrylost.apps.eatwise.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
-import kyrylost.apps.eatwise.SingleLiveEvent
 import kyrylost.apps.eatwise.model.FoodData
 import kyrylost.apps.eatwise.model.OwnFood
 import kyrylost.apps.eatwise.room.ownrecipes.OwnFoodRepository
@@ -18,19 +20,25 @@ class OwnFoodViewModel @Inject constructor(
     private val ownFoodRepository: OwnFoodRepository
 ): ViewModel() {
 
-    val ownFoodLiveData = MutableLiveData<LinkedList<OwnFood>>()
-    val emptyFieldErrorLiveData = SingleLiveEvent<String>()
-    val ownFoodInsertedLiveData = SingleLiveEvent<OwnFood>()
+    private val _ownFoodLiveData = MutableLiveData<LinkedList<OwnFood>>()
+    val ownFoodLiveData : LiveData<LinkedList<OwnFood>> = _ownFoodLiveData
 
-    fun insertOwnFood(foodName: String?, foodCalories: String?,
-                      foodWater: String?, foodProtein: String?,
-                      foodCarbs: String?, foodFats: String?,
-                      foodFiber: String?, foodSugar: String?,
-                      foodSalt: String?
-    ) {
+    private val _emptyFieldError = MutableSharedFlow<String>()
+    val emptyFieldError = _emptyFieldError.asSharedFlow()
+
+    private val _ownFoodInserted = MutableSharedFlow<OwnFood>()
+    val ownFoodInserted = _ownFoodInserted.asSharedFlow()
+
+    fun insertOwnFood(
+        foodName: String?, foodCalories: String?,
+        foodWater: String?, foodProtein: String?,
+        foodCarbs: String?, foodFats: String?,
+        foodFiber: String?, foodSugar: String?,
+        foodSalt: String?
+    ) = viewModelScope.launch {
 
         if (foodName.isNullOrEmpty()) {
-            emptyFieldErrorLiveData.postValue("Name field have to be filled!")
+            _emptyFieldError.emit("Name field have to be filled!")
         } else {
             viewModelScope.launch(Dispatchers.IO) {
                 val foodData = FoodData(
@@ -46,7 +54,7 @@ class OwnFoodViewModel @Inject constructor(
                 )
                 val ownFood = OwnFood(foodData = foodData)
                 ownFoodRepository.insertOwnFood(ownFood).also {
-                    ownFoodInsertedLiveData.postValue(ownFoodRepository.getLast())
+                    _ownFoodInserted.emit(ownFoodRepository.getLast())
                 }
             }
         }
@@ -54,7 +62,7 @@ class OwnFoodViewModel @Inject constructor(
 
     fun getOwnFoodList() {
         viewModelScope.launch(Dispatchers.IO) {
-            ownFoodLiveData.postValue(LinkedList(ownFoodRepository.getOwnFoodList()))
+            _ownFoodLiveData.postValue(LinkedList(ownFoodRepository.getOwnFoodList()))
         }
     }
 

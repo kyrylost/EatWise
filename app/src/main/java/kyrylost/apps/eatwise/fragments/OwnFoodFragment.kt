@@ -8,12 +8,17 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.adapters.OwnFoodAdapter
 import kyrylost.apps.eatwise.databinding.OwnFoodFragmentBinding
 import kyrylost.apps.eatwise.fragments.dialogs.AddFoodDialogFragment
 import kyrylost.apps.eatwise.fragments.dialogs.FoodDialogFragment
+import kyrylost.apps.eatwise.fragments.dialogs.YesterdayConsumedNutrientsDialogFragment
 import kyrylost.apps.eatwise.viewmodel.OwnFoodViewModel
 
 class OwnFoodFragment: Fragment() {
@@ -48,20 +53,6 @@ class OwnFoodFragment: Fragment() {
             }
         }
 
-        ownFoodViewModel.ownFoodInsertedLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(
-                context,
-                "Own  food was successfully added!",
-                Toast.LENGTH_LONG
-            ).show()
-
-            (childFragmentManager.findFragmentByTag(
-                "add_food_dialog_fragment"
-            ) as DialogFragment).dismiss()
-
-            adapter.addNewElement(it)
-        }
-
         binding.searchTb.setOnClickListener {
             val navController = OwnFoodFragmentDirections.actionOwnFoodFragmentToFoodListFragment()
             findNavController().navigate(navController)
@@ -77,6 +68,28 @@ class OwnFoodFragment: Fragment() {
             dialogFragment.show(childFragmentManager, "add_food_dialog_fragment")
         }
 
+        subscribeToObservables()
+
+    }
+
+    private fun subscribeToObservables() {
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                ownFoodViewModel.ownFoodInserted.collect {
+                    Toast.makeText(
+                        context,
+                        "Own  food was successfully added!",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                    (childFragmentManager.findFragmentByTag(
+                        "add_food_dialog_fragment"
+                    ) as DialogFragment).dismiss()
+
+                    adapter.addNewElement(it)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

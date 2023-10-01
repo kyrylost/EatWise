@@ -7,8 +7,13 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.core.view.doOnPreDraw
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.PersonalPageFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
 
@@ -68,8 +73,15 @@ class PersonalPageFragment : Fragment() {
 
         }
 
-        userViewModel.fieldUpdateFailure.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+        subscribeToObservables()
+
+    }
+
+    private fun subscribeToObservables() {
+        lifecycleScope.launch {
+            userViewModel.fieldUpdateInfo.collect {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+            }
         }
     }
 

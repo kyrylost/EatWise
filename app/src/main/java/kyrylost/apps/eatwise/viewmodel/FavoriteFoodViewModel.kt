@@ -1,5 +1,6 @@
 package kyrylost.apps.eatwise.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +17,8 @@ class FavoriteFoodViewModel @Inject constructor(
     private val favoriteFoodRepository: FavoriteFoodRepository
 ): ViewModel() {
 
-    val favoriteFoodLiveData = MutableLiveData<LinkedList<FavoriteFood>>()
+    private val _favoriteFoodLiveData = MutableLiveData<LinkedList<FavoriteFood>>()
+    val favoriteFoodLiveData: LiveData<LinkedList<FavoriteFood>> = _favoriteFoodLiveData
 
     fun insertFavoriteFood(favoriteFood: FavoriteFood) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -26,7 +28,7 @@ class FavoriteFoodViewModel @Inject constructor(
 
     fun getFavoriteFoodList() {
         viewModelScope.launch(Dispatchers.IO) {
-            favoriteFoodLiveData.postValue(LinkedList(favoriteFoodRepository.getFavoriteFoodList()))
+            _favoriteFoodLiveData.postValue(LinkedList(favoriteFoodRepository.getFavoriteFoodList()))
         }
     }
 
