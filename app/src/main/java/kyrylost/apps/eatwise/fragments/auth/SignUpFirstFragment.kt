@@ -1,6 +1,7 @@
 package kyrylost.apps.eatwise.fragments.auth
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.SignUpFirstFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
+import java.time.Clock
+import java.util.*
 
 class SignUpFirstFragment : Fragment() {
     private var _binding: SignUpFirstFragmentBinding? = null
@@ -49,18 +53,18 @@ class SignUpFirstFragment : Fragment() {
     }
 
     private fun subscribeToObservables() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.firstScreenFieldsSuccessfullySetted.collect {
+                userViewModel.firstScreenFieldsSuccessfullySetted.collectLatest {
                     val navController =
                         SignUpFirstFragmentDirections.actionSignUpFirstFragmentToSignUpSecondFragment()
                     findNavController().navigate(navController)
                 }
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.firstScreenFieldsSetError.collect {
+                userViewModel.firstScreenFieldsSetError.collectLatest {
                     Toast.makeText(
                         requireContext(),
                         it,

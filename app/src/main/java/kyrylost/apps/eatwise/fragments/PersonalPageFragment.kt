@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.PersonalPageFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
@@ -78,8 +79,8 @@ class PersonalPageFragment : Fragment() {
     }
 
     private fun subscribeToObservables() {
-        lifecycleScope.launch {
-            userViewModel.fieldUpdateInfo.collect {
+        viewLifecycleOwner.lifecycleScope.launch {
+            userViewModel.fieldUpdateInfo.collectLatest {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
             }
         }

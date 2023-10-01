@@ -3,6 +3,7 @@ package kyrylost.apps.eatwise.fragments.auth
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.SignUpSecondFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
@@ -97,18 +99,19 @@ class SignUpSecondFragment : Fragment() {
     }
 
     private fun subscribeToObservables() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.secondScreenFieldsSuccessfullySetted.collect {
+                userViewModel.secondScreenFieldsSuccessfullySetted.collectLatest {
+                    Log.d("secondScreenFieldsSuccessfullySetted", "SecondScr")
                     val navController =
                         SignUpSecondFragmentDirections.actionSignUpSecondFragmentToSignUpThirdFragment()
                     findNavController().navigate(navController)
                 }
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.secondScreenFieldsSetError.collect {
+                userViewModel.secondScreenFieldsSetError.collectLatest {
                     Toast.makeText(
                         requireContext(),
                         it,

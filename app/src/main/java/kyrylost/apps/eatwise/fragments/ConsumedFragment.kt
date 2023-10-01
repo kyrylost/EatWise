@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.fragments.dialogs.NutrientDialogFragment
 import kyrylost.apps.eatwise.R
@@ -92,9 +93,9 @@ class ConsumedFragment : Fragment() {
     }
 
     private fun subscribeToObservables() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                consumedNutrientsViewModel.yesterdayConsumedNutrientsSingleLiveEvent.collect {
+                consumedNutrientsViewModel.yesterdayConsumedNutrientsSingleLiveEvent.collectLatest {
                     val dialogFragment = YesterdayConsumedNutrientsDialogFragment(it)
                     dialogFragment.show(childFragmentManager, "yesterday_consumed_nutrients_dialog_fragment")
                 }

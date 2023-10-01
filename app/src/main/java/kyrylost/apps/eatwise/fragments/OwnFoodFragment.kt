@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.adapters.OwnFoodAdapter
 import kyrylost.apps.eatwise.databinding.OwnFoodFragmentBinding
@@ -73,9 +74,9 @@ class OwnFoodFragment: Fragment() {
     }
 
     private fun subscribeToObservables() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                ownFoodViewModel.ownFoodInserted.collect {
+                ownFoodViewModel.ownFoodInserted.collectLatest {
                     Toast.makeText(
                         context,
                         "Own  food was successfully added!",

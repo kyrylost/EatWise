@@ -18,7 +18,6 @@ class NutrientDialogFragment(private val nutrient: String): DialogFragment() {
     private val binding get() = _binding!!
     private val consumedNutrientsViewModel: ConsumedNutrientsViewModel by activityViewModels()
 
-
     @SuppressLint("SetTextI18n")
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         _binding = NutrientDialogFragmentBinding.inflate(layoutInflater)

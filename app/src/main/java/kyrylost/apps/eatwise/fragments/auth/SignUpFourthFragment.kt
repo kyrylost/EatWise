@@ -15,6 +15,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.R
 import kyrylost.apps.eatwise.databinding.SignUpFourthFragmentBinding
@@ -104,9 +105,9 @@ class SignUpFourthFragment : Fragment() {
     }
 
     private fun subscribeToObservables() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.fourthScreenFieldsSetError.collect() {
+                userViewModel.fourthScreenFieldsSetError.collectLatest {
                     Toast.makeText(
                         requireContext(),
                         it,
@@ -116,9 +117,9 @@ class SignUpFourthFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.userAuthAndCreatingSuccess.collect {
+                userViewModel.userAuthAndCreatingSuccess.collectLatest {
                     val navController =
                         SignUpFourthFragmentDirections.actionSignUpFourthFragmentToConsumedFragment()
 
@@ -130,9 +131,9 @@ class SignUpFourthFragment : Fragment() {
                 }
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.userAuthAndCreatingFailure.collect() {
+                userViewModel.userAuthAndCreatingFailure.collectLatest {
                     Toast.makeText(
                         requireContext(),
                         "Account cannot be created now!",

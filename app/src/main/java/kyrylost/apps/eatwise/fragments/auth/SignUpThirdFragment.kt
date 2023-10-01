@@ -12,6 +12,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.SignUpThirdFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
@@ -60,18 +61,18 @@ class SignUpThirdFragment : Fragment() {
     }
 
     private fun subscribeToObservables() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.thirdScreenFieldsSuccessfullySetted.collect {
+                userViewModel.thirdScreenFieldsSuccessfullySetted.collectLatest {
                     val navController =
                         SignUpThirdFragmentDirections.actionSignUpThirdFragmentToSignUpFourthFragment()
                     findNavController().navigate(navController)
                 }
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.thirdScreenFieldsSetError.collect {
+                userViewModel.thirdScreenFieldsSetError.collectLatest {
                     Toast.makeText(
                         requireContext(),
                         it,

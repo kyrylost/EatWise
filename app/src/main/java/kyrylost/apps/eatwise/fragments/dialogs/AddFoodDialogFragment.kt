@@ -15,6 +15,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.AddFoodDialogFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.OwnFoodViewModel
@@ -65,9 +66,9 @@ class AddFoodDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                ownFoodViewModel.emptyFieldError.collect {
+                ownFoodViewModel.emptyFieldError.collectLatest {
                     Toast.makeText(context, it, Toast.LENGTH_LONG).show()
                 }
             }

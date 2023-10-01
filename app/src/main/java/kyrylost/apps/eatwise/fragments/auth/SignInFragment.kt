@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.SignInFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
@@ -63,16 +64,16 @@ class SignInFragment : Fragment() {
     }
 
     private fun subscribeToObservables() {
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.firstScreenFieldsSuccessfullySetted.collect {
+                userViewModel.firstScreenFieldsSuccessfullySetted.collectLatest {
                     userViewModel.login()
                 }
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.firstScreenFieldsSetError.collect {
+                userViewModel.firstScreenFieldsSetError.collectLatest {
                     Toast.makeText(
                         requireContext(),
                         it,
@@ -82,9 +83,9 @@ class SignInFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.userAuthAndCreatingSuccess.collect {
+                userViewModel.userAuthAndCreatingSuccess.collectLatest {
                     val navController =
                         SignInFragmentDirections.actionSignInFragmentToConsumedFragment()
 
@@ -97,9 +98,9 @@ class SignInFragment : Fragment() {
                 }
             }
         }
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                userViewModel.userAuthAndCreatingFailure.collect {
+                userViewModel.userAuthAndCreatingFailure.collectLatest {
                     Toast.makeText(
                         requireContext(),
                         "You cannot be logged in right now",
