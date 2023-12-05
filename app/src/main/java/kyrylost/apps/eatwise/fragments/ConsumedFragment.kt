@@ -6,6 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.fragments.dialogs.NutrientDialogFragment
 import kyrylost.apps.eatwise.R
 import kyrylost.apps.eatwise.databinding.ConsumedFragmentBinding
@@ -32,10 +37,7 @@ class ConsumedFragment : Fragment() {
         consumedNutrientsViewModel.getConsumedNutrients()
         consumedNutrientsViewModel.getYesterdayConsumedNutrients()
 
-        consumedNutrientsViewModel.yesterdayConsumedNutrientsSingleLiveEvent.observe(viewLifecycleOwner) {
-            val dialogFragment = YesterdayConsumedNutrientsDialogFragment(it)
-            dialogFragment.show(childFragmentManager, "yesterday_consumed_nutrients_dialog_fragment")
-        }
+        subscribeToObservables()
 
         binding.waterCard.setOnClickListener {
             val dialogFragment = NutrientDialogFragment(
@@ -84,6 +86,17 @@ class ConsumedFragment : Fragment() {
                 requireContext().getString(R.string.salt).lowercase()
             )
             dialogFragment.show(childFragmentManager, "salt_dialog_fragment")
+        }
+    }
+
+    private fun subscribeToObservables() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                consumedNutrientsViewModel.yesterdayConsumedNutrientsSingleLiveEvent.collectLatest {
+                    val dialogFragment = YesterdayConsumedNutrientsDialogFragment(it)
+                    dialogFragment.show(childFragmentManager, "yesterday_consumed_nutrients_dialog_fragment")
+                }
+            }
         }
     }
 

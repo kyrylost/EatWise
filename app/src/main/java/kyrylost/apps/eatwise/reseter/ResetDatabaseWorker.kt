@@ -1,7 +1,6 @@
 package kyrylost.apps.eatwise.reseter
 
 import android.content.Context
-import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -11,7 +10,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kyrylost.apps.eatwise.model.ConsumedNutrients
 import kyrylost.apps.eatwise.room.consumednutrients.ConsumedNutrientsRepository
-import java.util.Calendar
 
 @HiltWorker
 class ResetDatabaseWorker @AssistedInject constructor(

@@ -12,6 +12,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.AddFoodDialogFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.OwnFoodViewModel
 
@@ -61,8 +66,12 @@ class AddFoodDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ownFoodViewModel.emptyFieldErrorLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        viewLifecycleOwner.lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                ownFoodViewModel.emptyFieldError.collectLatest {
+                    Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+                }
+            }
         }
 
     }

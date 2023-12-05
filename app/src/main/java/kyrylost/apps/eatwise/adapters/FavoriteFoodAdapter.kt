@@ -8,7 +8,7 @@ import kyrylost.apps.eatwise.databinding.FoodItemBinding
 import kyrylost.apps.eatwise.model.FavoriteFood
 import kyrylost.apps.eatwise.model.FoodData
 import kyrylost.apps.eatwise.viewholders.FoodViewHolder
-import java.util.*
+import java.util.LinkedList
 
 class FavoriteFoodAdapter(private val favoriteFoodList: LinkedList<FavoriteFood>,
                           private val context: Context) :

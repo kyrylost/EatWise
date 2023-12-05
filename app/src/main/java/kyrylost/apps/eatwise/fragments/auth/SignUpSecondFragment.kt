@@ -3,13 +3,19 @@ package kyrylost.apps.eatwise.fragments.auth
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.SignUpSecondFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
 
@@ -28,20 +34,6 @@ class SignUpSecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        userViewModel.secondScreenFieldsSuccessfullySetted.observe(viewLifecycleOwner) {
-            val navController =
-                SignUpSecondFragmentDirections.actionSignUpSecondFragmentToSignUpThirdFragment()
-            findNavController().navigate(navController)
-        }
-
-        userViewModel.secondScreenFieldsSetError.observe(viewLifecycleOwner) {
-            Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            ).show()
-        }
 
         binding.secondSignUpContinue.setOnClickListener {
             val birthday = binding.dateEt.text.toString()
@@ -102,6 +94,32 @@ class SignUpSecondFragment : Fragment() {
             }
         })
 
+        subscribeToObservables()
+
+    }
+
+    private fun subscribeToObservables() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userViewModel.secondScreenFieldsSuccessfullySetted.collectLatest {
+                    Log.d("secondScreenFieldsSuccessfullySetted", "SecondScr")
+                    val navController =
+                        SignUpSecondFragmentDirections.actionSignUpSecondFragmentToSignUpThirdFragment()
+                    findNavController().navigate(navController)
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userViewModel.secondScreenFieldsSetError.collectLatest {
+                    Toast.makeText(
+                        requireContext(),
+                        it,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

@@ -8,7 +8,12 @@ import android.widget.SeekBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.SignUpThirdFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
 
@@ -25,20 +30,6 @@ class SignUpThirdFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        userViewModel.thirdScreenFieldsSuccessfullySetted.observe(viewLifecycleOwner) {
-            val navController =
-                SignUpThirdFragmentDirections.actionSignUpThirdFragmentToSignUpFourthFragment()
-            findNavController().navigate(navController)
-        }
-
-        userViewModel.thirdScreenFieldsSetError.observe(viewLifecycleOwner) {
-            Toast.makeText(
-                requireContext(),
-                it,
-                Toast.LENGTH_LONG
-            ).show()
-        }
 
         binding.trainingsSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
@@ -63,6 +54,32 @@ class SignUpThirdFragment : Fragment() {
             userViewModel.setSexAndWorkAndTrainings(sexId, workId, trainings,
                 binding.maleButton.id, binding.femaleButton.id,
                 binding.activeButton.id, binding.sedentaryButton.id)
+        }
+
+        subscribeToObservables()
+
+    }
+
+    private fun subscribeToObservables() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userViewModel.thirdScreenFieldsSuccessfullySetted.collectLatest {
+                    val navController =
+                        SignUpThirdFragmentDirections.actionSignUpThirdFragmentToSignUpFourthFragment()
+                    findNavController().navigate(navController)
+                }
+            }
+        }
+        viewLifecycleOwner.lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                userViewModel.thirdScreenFieldsSetError.collectLatest {
+                    Toast.makeText(
+                        requireContext(),
+                        it,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
     }
 
