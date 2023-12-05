@@ -12,7 +12,7 @@ class UserRepository @Inject constructor(
     fun updateWeight(weight: Double) = userDao.updateWeight(weight)
     fun updateSex(sex: Int) = userDao.updateSex(sex)
     fun updateWork(work: Int) = userDao.updateWork(work)
-    fun updateTrainings(Trainings: Int) = userDao.updateTrainings(Trainings)
+    fun updateTrainings(trainings: Int) = userDao.updateTrainings(trainings)
     fun updateDiet(diet: Int) = userDao.updateDiet(diet)
 
 }

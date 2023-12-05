@@ -1,7 +1,6 @@
 package kyrylost.apps.eatwise.fragments.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +15,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kyrylost.apps.eatwise.databinding.SignUpFirstFragmentBinding
 import kyrylost.apps.eatwise.viewmodel.UserViewModel
-import java.time.Clock
-import java.util.*
 
 class SignUpFirstFragment : Fragment() {
     private var _binding: SignUpFirstFragmentBinding? = null

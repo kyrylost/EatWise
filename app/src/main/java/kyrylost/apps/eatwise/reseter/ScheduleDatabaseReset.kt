@@ -2,7 +2,7 @@ package kyrylost.apps.eatwise.reseter
 
 import android.content.Context
 import androidx.work.*
-import java.util.*
+import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
 // Schedule the task to run daily at the specific time

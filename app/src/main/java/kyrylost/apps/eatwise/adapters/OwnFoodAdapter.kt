@@ -9,7 +9,7 @@ import kyrylost.apps.eatwise.databinding.FoodItemBinding
 import kyrylost.apps.eatwise.model.FoodData
 import kyrylost.apps.eatwise.model.OwnFood
 import kyrylost.apps.eatwise.viewholders.FoodViewHolder
-import java.util.*
+import java.util.LinkedList
 
 class OwnFoodAdapter(private val ownFoodList: LinkedList<OwnFood>,
                      private val context: Context

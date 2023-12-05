@@ -19,14 +19,13 @@ import kyrylost.apps.eatwise.adapters.OwnFoodAdapter
 import kyrylost.apps.eatwise.databinding.OwnFoodFragmentBinding
 import kyrylost.apps.eatwise.fragments.dialogs.AddFoodDialogFragment
 import kyrylost.apps.eatwise.fragments.dialogs.FoodDialogFragment
-import kyrylost.apps.eatwise.fragments.dialogs.YesterdayConsumedNutrientsDialogFragment
 import kyrylost.apps.eatwise.viewmodel.OwnFoodViewModel
 
 class OwnFoodFragment: Fragment() {
     private var _binding: OwnFoodFragmentBinding? = null
     private val binding get() = _binding!!
     private val ownFoodViewModel: OwnFoodViewModel by activityViewModels()
-    lateinit var adapter: OwnFoodAdapter
+    private lateinit var adapter: OwnFoodAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
